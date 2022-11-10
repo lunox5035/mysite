@@ -7,17 +7,6 @@ public class UserVo {
 	private String password;
 	private String gender;
 	private String joinDate;
-	public String getJoinDate() {
-		return joinDate;
-	}
-	public void setJoinDate(String joinDate) {
-		this.joinDate = joinDate;
-	}
-	@Override
-	public String toString() {
-		return "UserVo [no=" + no + ", name=" + name + ", email=" + email + ", password=" + password + ", gender="
-				+ gender + ", joinDate=" + joinDate + "]";
-	}
 	public Long getNo() {
 		return no;
 	}
@@ -48,5 +37,15 @@ public class UserVo {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	
+	public String getJoinDate() {
+		return joinDate;
+	}
+	public void setJoinDate(String joinDate) {
+		this.joinDate = joinDate;
+	}
+	@Override
+	public String toString() {
+		return "UserVo [no=" + no + ", name=" + name + ", email=" + email + ", password=" + password + ", gender="
+				+ gender + ", joinDate=" + joinDate + "]";
+	}
 }

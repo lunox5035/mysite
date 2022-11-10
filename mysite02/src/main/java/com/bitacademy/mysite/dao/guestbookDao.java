@@ -10,9 +10,45 @@ import java.util.List;
 
 import com.bitacademy.mysite.vo.guestbookVo;
 
-public class guestbookDao {
 
-//===============================================================================================
+
+public class guestbookDao {
+	public Boolean deleteByNoAndPassword(Long no, String password) {
+		boolean result = false;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = getConnection();
+			
+			String sql = "delete from guestbook where no = ? and password = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setLong(1, no);
+			pstmt.setString(2, password);
+			
+			int count = pstmt.executeUpdate();
+			
+			result = count == 1;
+		} catch (SQLException e) {
+			System.out.println("Error:" + e);
+		} finally {
+			try {
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				
+				if(conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;		
+	}
+	
 	public Boolean insert(guestbookVo vo) {
 		boolean result = false;
 		
@@ -21,96 +57,51 @@ public class guestbookDao {
 		
 		try {
 			conn = getConnection();
-			//3. Statement 생성
-			String sql = "insert into gustbook values(null,?,?,?,now())";
+			
+			String sql = "insert into guestbook values(null, ?, ?, ?, now())";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getName());
 			pstmt.setString(2, vo.getPassword());
 			pstmt.setString(3, vo.getContents());
-
-			// 5. SQL 실행
+			
 			int count = pstmt.executeUpdate();
-
-			// 6. 결과 처리
+			
+			//5. 결과 처리
 			result = count == 1;
-
+			
 		} catch (SQLException e) {
 			System.out.println("Error:" + e);
 		} finally {
 			try {
-				if (pstmt != null) {
+				if(pstmt != null) {
 					pstmt.close();
 				}
-
-				if (conn != null) {
+				
+				if(conn != null) {
 					conn.close();
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-
-		return result;
-
-	}
-//===============================================================================================
-	public Boolean deleteByNoAndPassword(Long no, String password) {
-		boolean result = false;
-	
-	Connection conn = null;
-	PreparedStatement pstmt = null;
-	
-	try {
-		conn = getConnection();
 		
-		//3. Statement 생성
-		String sql = "delete from gustbook where no = ? and password = ?";
-		pstmt = conn.prepareStatement(sql);
-		pstmt.setLong(1, no);
-		pstmt.setString(2, password);
-
-		// 5. SQL 실행
-		int count = pstmt.executeUpdate();
-
-		// 6. 결과 처리
-		result = count == 1;
-
-	} catch (SQLException e) {
-		System.out.println("Error:" + e);
-	} finally {
-		try {
-			if (pstmt != null) {
-				pstmt.close();
-			}
-
-			if (conn != null) {
-				conn.close();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
-	return result;
-
+		return result;
 	}
 	
-//===============================================================================================
 	public List<guestbookVo> findAll() {
 		List<guestbookVo> result = new ArrayList<>();
 	
 		Connection conn = null;
-		PreparedStatement  pstmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		try {
 			conn = getConnection();
-
-			String sql = 
-					"   select no, name, contents, date_format(reg_date, '%Y/%m/%d %H:%i:%s')" + 
-				    "     from gustbook" + 
-					" order by reg_date desc";
-
+			
+			String sql =
+				"    select no, name, contents, date_format(reg_date, '%Y/%m/%d %H:%i:%s')" + 
+				"      from guestbook" + 
+				"  order by reg_date desc";
 			pstmt = conn.prepareStatement(sql);
 			
 			rs = pstmt.executeQuery();
@@ -124,7 +115,7 @@ public class guestbookDao {
 				vo.setNo(no);
 				vo.setName(name);
 				vo.setContents(contents);
-				vo.setReg_date(regDate);
+				vo.setRegDate(regDate);
 				
 				result.add(vo);
 			}
@@ -151,8 +142,7 @@ public class guestbookDao {
 		
 		return result;
 	}
-
-//========================================================================================================	
+	
 	private Connection getConnection() throws SQLException {
 		Connection conn = null;
 
