@@ -91,10 +91,10 @@ public class UserController extends HttpServlet {
 			HttpSession session = request.getSession();
 			UserVo authUser = (UserVo)request.getAttribute("authUser");
 			
-//			if(authUser==null) {
-//				response.sendRedirect(request.getContextPath()+"/user?a=loginfrom");
-//				return;
-//			}
+			if(authUser==null) {
+				response.sendRedirect(request.getContextPath()+"/user?a=loginfrom");
+				return;
+			}
 			
 //			UserVo vo = new UserDao().findByNo(authUser.getNo());
 //			request.setAttribute("userVo", vo);

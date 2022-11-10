@@ -63,51 +63,51 @@ public class UserDao {
 	}
 	
 //=====================================================================================================
-		public UserVo findByNo(String email, String password) {
-			UserVo result = null;
-			
-			Connection conn = null;
-			PreparedStatement pstmt = null;
-			
-			ResultSet rs=null;
-			
-			try {
-				conn = getConnection();
-				//3. Statement 생성
-				String sql = "select no from user"
-						+ "where email =? and password=?;";
-				
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, email);
-				pstmt.setString(2, password);
-
-				rs=pstmt.executeQuery();
-				if(rs.next()) {
-					Long no= rs.getLong(1);
-					
-					result = new UserVo();
-					result.setNo(no);
-					}
-
-			} catch (SQLException e) {
-				System.out.println("Error:" + e);
-			} finally {
-				try {
-					if (pstmt != null) {
-						pstmt.close();
-					}
-
-					if (conn != null) {
-						conn.close();
-					}
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-
-			return result;
-			
-		}
+//		public UserVo findByNo(String email, String password) {
+//			UserVo result = null;
+//			
+//			Connection conn = null;
+//			PreparedStatement pstmt = null;
+//			
+//			ResultSet rs=null;
+//			
+//			try {
+//				conn = getConnection();
+//				//3. Statement 생성
+//				String sql = "select no from user"
+//						+ "where email =? and password=?;";
+//				
+//				pstmt = conn.prepareStatement(sql);
+//				pstmt.setString(1, email);
+//				pstmt.setString(2, password);
+//
+//				rs=pstmt.executeQuery();
+//				if(rs.next()) {
+//					Long no= rs.getLong(1);
+//					
+//					result = new UserVo();
+//					result.setNo(no);
+//					}
+//
+//			} catch (SQLException e) {
+//				System.out.println("Error:" + e);
+//			} finally {
+//				try {
+//					if (pstmt != null) {
+//						pstmt.close();
+//					}
+//
+//					if (conn != null) {
+//						conn.close();
+//					}
+//				} catch (SQLException e) {
+//					e.printStackTrace();
+//				}
+//			}
+//
+//			return result;
+//			
+//		}
 
 //=====================================================================================================
 		public static boolean update(UserVo vo) {
@@ -116,14 +116,7 @@ public class UserDao {
 			PreparedStatement pstmt = null;
 			
 			try {
-				//1. JDBC Driver Class Loading
-				Class.forName("org.mariadb.jdbc.Driver");
-				
-				//2. 연결하기
-				String url = "jdbc:mysql://127.0.0.1:3306/webdb?charset=utf8";
-				conn = DriverManager.getConnection(url, "webdb", "webdb");
-				
-				if(vo.getPassword()!="") {
+					if(vo.getPassword()!="") {
 					//3. Statement 준비
 					String sql = "UPDATE user "
 							+ "set name = ?, password= ? , gender= ?"
@@ -156,8 +149,6 @@ public class UserDao {
 
 				//6. 결과 처리
 				result = count == 1;
-			} catch (ClassNotFoundException e) {
-				System.out.println("드라이버 로딩 실패:" + e);
 			} catch (SQLException e) {
 				System.out.println("Error:" + e);
 			} finally {
