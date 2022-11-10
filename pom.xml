@@ -9,5 +9,6 @@
 	
 	<modules>
 		<module>mysite02</module>
+		<module>mysite01</module>
 	</modules>
 </project>

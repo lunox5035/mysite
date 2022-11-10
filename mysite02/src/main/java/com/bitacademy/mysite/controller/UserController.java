@@ -83,39 +83,54 @@ public class UserController extends HttpServlet {
 				session.invalidate();
 				
 			}
-			response.sendRedirect(request.getContextPath());
+			response.sendRedirect(request.getContextPath() + "/user?a=updateform");
 
 //==========================================================================================
 		}else if("updateform".equals(action)) {
 			//Access Control
 			HttpSession session = request.getSession();
-			UserVo authUser = (UserVo)request.getAttribute("authUser");
+			UserVo authUser = (UserVo)session.getAttribute("authUser");
 			
 			if(authUser==null) {
 				response.sendRedirect(request.getContextPath()+"/user?a=loginfrom");
 				return;
 			}
 			
-//			UserVo vo = new UserDao().findByNo(authUser.getNo());
-//			request.setAttribute("userVo", vo);
+			UserVo vo = new UserDao().findByNo(authUser.getNo());
+			request.setAttribute("userVo", vo);
 			
 			request
-			.getRequestDispatcher("WEB-INF/views/user/updateform.jsp")
+			.getRequestDispatcher("/WEB-INF/views/user/updateform.jsp")
 			.forward(request, response);
 
 		}else if("update".equals(action)){
+			//Access Control
+			HttpSession session = request.getSession();
+			UserVo authUser = (UserVo)session.getAttribute("authUser");
+			
+			if(authUser==null) {
+				response.sendRedirect(request.getContextPath()+"/user?a=loginfrom");
+				return;
+			}
+			
+
+			
 			String name = request.getParameter("name");
-			String email = request.getParameter("email");
+			String password = request.getParameter("password");
 			String gender = request.getParameter("gender");	
 			
 			UserVo vo = new UserVo();
+			vo.setNo(authUser.getNo());//몰랐음
+			
 			vo.setName(name);
-			vo.setEmail(email);
+			vo.setEmail(password);
 			vo.setGender(gender);
 			
 			new UserDao().update(vo);
 			
-			response.sendRedirect(request.getContextPath()+"WEB-INF/views/user/updateform");
+			authUser.setName(name);//추가
+			
+			response.sendRedirect(request.getContextPath()+"/user?a=updateform");
 				
 //==========================================================================================		
 		}else {
