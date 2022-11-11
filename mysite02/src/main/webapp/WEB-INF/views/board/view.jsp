@@ -35,8 +35,10 @@
 					</tr>
 				</table>
 				<div class="bottom">
-					<a href="">글목록</a> <a
-						href="${pageContext.request.contextPath}/board?a=modify&no=${Boardvo.getNo }">글수정</a>
+					<a href="">글목록</a>
+					 <c:if test="${authUser != null}">
+					 <a href="${pageContext.request.contextPath}/board?a=modify&no=${Boardvo.getNo }">글수정</a>
+					 </c:if>
 				</div>
 			</div>
 		</div>

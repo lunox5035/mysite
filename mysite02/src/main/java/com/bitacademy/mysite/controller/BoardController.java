@@ -62,7 +62,7 @@ public class BoardController extends HttpServlet {
 			.forward(request, response);
 		}else{
 			request
-				.getRequestDispatcher("/WEB-INF/views/board/list.jsp")
+				.getRequestDispatcher("/WEB-INF/views/board/view.jsp")
 				.forward(request, response);
 		}
 	}
