@@ -40,11 +40,11 @@
 								<td>[4]</td>
 								<td>${vo.name }</td>
 								<td>${vo.regDate }</td>>
-								<td><a href="">삭제</a></td>
+								<td><a href="${pageContext.request.contextPath}/guestbook?a=deleteform&no=${UserVo.no}">삭제</a></td>
 							</tr>
 							<tr>
 								<td colspan=4>
-								${fn:replace(Vo.contents,20 }	
+								${vo.contens }
 								</td>
 							</tr>
 						</table>

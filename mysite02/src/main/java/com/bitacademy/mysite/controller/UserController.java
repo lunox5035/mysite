@@ -47,6 +47,7 @@ public class UserController extends HttpServlet {
 			//// Access Control(접근 제어)
 			HttpSession session = request.getSession();
 			UserVo authUser = (UserVo)session.getAttribute("authUser");
+			
 			if(authUser == null) {
 				response.sendRedirect(request.getContextPath()+"/user?a=loginform");
 				return;
