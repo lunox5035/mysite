@@ -44,7 +44,7 @@
 							</tr>
 							<tr>
 								<td colspan=4>
-								${ }	
+								${fn:replace(Vo.contents,20 }	
 								</td>
 							</tr>
 						</table>
