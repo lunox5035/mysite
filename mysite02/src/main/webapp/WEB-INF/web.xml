@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
-  <display-name>mysite02</display-name>
+   <display-name>mysite02</display-name>
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>/WEB-INF/applicationContext.xml</param-value>
@@ -9,7 +9,6 @@
     <listener-class>com.bitacademy.web.ContextLoadListener</listener-class>
   </listener>
   <filter>
-    <display-name>EncodingFilter</display-name>
     <filter-name>EncodingFilter</filter-name>
     <filter-class>com.bitacademy.web.EncodingFilter</filter-class>
     <init-param>
@@ -34,24 +33,12 @@
     <url-pattern></url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
-    <display-name>UserController</display-name>
     <servlet-name>UserController</servlet-name>
     <servlet-class>com.bitacademy.mysite.controller.UserController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>UserController</servlet-name>
     <url-pattern>/user</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>GuestbookController</display-name>
-    <servlet-name>GuestbookController</servlet-name>
-    <servlet-class>com.bitacademy.mysite.controller.GuestbookController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>GuestbookController</servlet-name>
-    <url-pattern>/guestbook</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
@@ -63,12 +50,12 @@
   </welcome-file-list>
   <servlet>
     <description></description>
-    <display-name>boardController</display-name>
-    <servlet-name>boardController</servlet-name>
-    <servlet-class>com.bitacademy.mysite.controller.boardController</servlet-class>
+    <display-name>BoardController</display-name>
+    <servlet-name>BoardController</servlet-name>
+    <servlet-class>com.bitacademy.mysite.controller.BoardController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>boardController</servlet-name>
+    <servlet-name>BoardController</servlet-name>
     <url-pattern>/board</url-pattern>
   </servlet-mapping>
 </web-app>

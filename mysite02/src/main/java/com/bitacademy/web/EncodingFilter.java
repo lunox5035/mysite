@@ -1,4 +1,4 @@
-package com.biracademy.web;
+package com.bitacademy.web;
 
 import java.io.IOException;
 import javax.servlet.Filter;
@@ -10,22 +10,22 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpFilter;
 
 public class EncodingFilter extends HttpFilter implements Filter {
-	private String enString = "utf-8";
+    private String encoding = "utf-8";
+    
 	public void init(FilterConfig fConfig) throws ServletException {
-		String encoding =fConfig.getInitParameter("encoding");
+		encoding = fConfig.getInitParameter("encoding");
 	}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		/* request 처리 */
-		request.setCharacterEncoding("utf-8");
+		request.setCharacterEncoding(encoding);
 		
 		chain.doFilter(request, response);
 		
 		/* response 처리 */
-		
+	
 	}
 
 	public void destroy() {
 	}
-
 }
