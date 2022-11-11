@@ -32,7 +32,7 @@
 						<th>&nbsp;</th>
 					</tr>	
 							
-			<%for(int i =0;i<list.length;i++){ %> 	
+			
 					
 					<tr>
 						<td></td>
@@ -43,8 +43,8 @@
 						<td>${boardVo.getRegDate }</td>
 						<td><a href="${pageContext.request.contextPath }/board" class="del">삭제</a></td>
 					</tr>
-				<%} %>
-					
+			
+		
 				</table>
 				
 				<!-- pager 추가 -->
@@ -60,15 +60,13 @@
 					</ul>
 				</div>					
 				<!-- pager 추가 -->
-				<%
-					if(authUser != null) {
-				%>	
+				
+				<c:if test="${authUser != null}">
+				
 				<div class="bottom">
 					<a href="" id="new-book">글쓰기</a>
 				</div>	
-				<%
-					} else {}
-				%>
+				</c:if>
 			</div>
 		</div>
 		<jsp:include page="/WEB-INF/views/includes/navigation.jsp"/>
