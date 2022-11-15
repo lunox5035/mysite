@@ -22,7 +22,7 @@ public class guestbookDao {
 		try {
 			conn = getConnection();
 			
-			String sql = "delete from guestbook where no = ? and password = ?";
+			String sql = "delete from gustbook where no = ? and password = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setLong(1, no);
 			pstmt.setString(2, password);
@@ -49,6 +49,8 @@ public class guestbookDao {
 		return result;		
 	}
 	
+//=================================================================================
+
 	public Boolean insert(guestbookVo vo) {
 		boolean result = false;
 		
@@ -58,15 +60,15 @@ public class guestbookDao {
 		try {
 			conn = getConnection();
 			
-			String sql = "insert into guestbook values(null, ?, ?, ?, now())";
+			String sql = "insert into gustbook values(null, ?, ?, ?, now())";
 			pstmt = conn.prepareStatement(sql);
+			
 			pstmt.setString(1, vo.getName());
 			pstmt.setString(2, vo.getPassword());
 			pstmt.setString(3, vo.getContents());
 			
 			int count = pstmt.executeUpdate();
 			
-			//5. 결과 처리
 			result = count == 1;
 			
 		} catch (SQLException e) {
@@ -88,6 +90,7 @@ public class guestbookDao {
 		return result;
 	}
 	
+//=================================================================================
 	public List<guestbookVo> findAll() {
 		List<guestbookVo> result = new ArrayList<>();
 	
@@ -100,7 +103,7 @@ public class guestbookDao {
 			
 			String sql =
 				"    select no, name, contents, date_format(reg_date, '%Y/%m/%d %H:%i:%s')" + 
-				"      from guestbook" + 
+				"      from gustbook" + 
 				"  order by reg_date desc";
 			pstmt = conn.prepareStatement(sql);
 			
@@ -143,6 +146,7 @@ public class guestbookDao {
 		return result;
 	}
 	
+//=================================================================================
 	private Connection getConnection() throws SQLException {
 		Connection conn = null;
 

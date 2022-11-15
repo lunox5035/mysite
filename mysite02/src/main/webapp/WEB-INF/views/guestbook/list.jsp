@@ -16,7 +16,7 @@
 		<jsp:include page="/WEB-INF/views/includes/header.jsp"/>
 		<div id="content">
 			<div id="guestbook">
-				<form action="/guestbook" method="post">
+				<form action="${pageContext.request.contextPath}/guestbook" method="post">
 					<input type="hidden" name="a" value="insert">
 					<table>
 						<tr>
@@ -37,15 +37,13 @@
 					<c:forEach items='${list }' var='vo' varStatus='status'>
 						<table>
 							<tr>
-								<td>[4]</td>
+								<td>${count }</td>
 								<td>${vo.name }</td>
 								<td>${vo.regDate }</td>>
 								<td><a href="${pageContext.request.contextPath}/guestbook?a=deleteform&no=${UserVo.no}">삭제</a></td>
 							</tr>
 							<tr>
-								<td colspan=4>
-								${vo.contens }
-								</td>
+								<td colspan=4>${vo.contents }</td>
 							</tr>
 						</table>
 						<br>

@@ -43,6 +43,8 @@ public class UserController extends HttpServlet {
 			request
 				.getRequestDispatcher("/WEB-INF/views/user/joinsuccess.jsp")
 				.forward(request, response);
+			
+//=================================================================================
 		} else if("updateform".equals(action)) {
 			//// Access Control(접근 제어)
 			HttpSession session = request.getSession();
@@ -87,6 +89,8 @@ public class UserController extends HttpServlet {
 			authUser.setName(name);
 			
 			response.sendRedirect(request.getContextPath() + "/user?a=updateform");
+		
+//=================================================================================
 		} else if("loginform".equals(action)) {
 			request
 			.getRequestDispatcher("/WEB-INF/views/user/loginform.jsp")
@@ -113,6 +117,7 @@ public class UserController extends HttpServlet {
 			
 			response.sendRedirect(request.getContextPath());
 			
+//=================================================================================
 		} else if("logout".equals(action)) {
 			HttpSession session = request.getSession();
 
@@ -122,6 +127,9 @@ public class UserController extends HttpServlet {
 			}
 			
 			response.sendRedirect(request.getContextPath());
+
+//=================================================================================
+		
 		} else {
 			response.sendRedirect(request.getContextPath());
 		}

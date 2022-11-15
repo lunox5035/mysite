@@ -1,10 +1,14 @@
 package com.bitacademy.mysite.controller;
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.apache.catalina.User;
 
 import com.bitacademy.mysite.dao.BoardDao;
 import com.bitacademy.mysite.vo.BoardVo;
@@ -19,50 +23,56 @@ public class BoardController extends HttpServlet {
 			request
 			.getRequestDispatcher("/WEB-INF/views/board/write.jsp")
 			.forward(request, response);
-		} else if("write".equals(action)) {
-			String title = request.getParameter("title");
-			String contents = request.getParameter("contents");
 			
-			BoardVo vo = new BoardVo();
-			vo.setTitle(title);
-			vo.setContents(contents);
-
-			new BoardDao().write(vo);
-
-			response.sendRedirect(request.getContextPath());
+//		} else if("write".equals(action)) {
+//			String title = request.getParameter("title");
+//			String contents = request.getParameter("contents");
+//			
+//			BoardVo vo = new BoardVo();
+//			vo.setTitle(title);
+//			vo.setContents(contents);
+//			
+//			new BoardDao().insert(vo);
+//
+//			response.sendRedirect(request.getContextPath()+"/board");
 			
 //=================================================================================
-		}else if("viewform".equals(action)) {
+		}else if("view".equals(action)) {
 			request
 			.getRequestDispatcher("/WEB-INF/views/board/view.jsp")
 			.forward(request, response);
-		}else if("view".equals(action)) {
-			HttpSession session = request.getSession();
-			BoardVo authUser  = (BoardVo)session.getAttribute("authUser ");
+			
+//		}else if("view".equals(action)) {
+//			HttpSession session = request.getSession();
+//			BoardVo authUser  = (BoardVo)session.getAttribute("authUser ");
 		
 //=================================================================================			
-		}else if("modifyform".equals(action)) {
+		}else if("modify".equals(action)) {
 			request
 			.getRequestDispatcher("/WEB-INF/views/board/modify.jsp")
 			.forward(request, response);
-		}else if("modify".equals(action)) {
-			request
-			.getRequestDispatcher("/WEB-INF/views/board/write.jsp")
-			.forward(request, response);
+			
+//		}else if("modify".equals(action)) {
+//			request
+//			.getRequestDispatcher("/WEB-INF/views/board/write.jsp")
+//			.forward(request, response);
 			
 //=================================================================================
-//		}else if("list".equals(action)) {
-//			
-//			UserDao dao = new UserDao();
-//			UserVo authUser = dao.load(no);
-//			
-		}else if("viewform".equals(action)) {
-			request
-			.getRequestDispatcher("/WEB-INF/views/board/write.jsp")
-			.forward(request, response);
+		}else if("".equals(action)) {
+			
+				
+//		}else if("".equals(action)) {
+//			request
+//			.getRequestDispatcher("/WEB-INF/views/board/write.jsp")
+//			.forward(request, response);
+			
+//=================================================================================
 		}else{
+			List<BoardVo> list = new BoardDao().findAll();
+			
+			request.setAttribute("list", list);
 			request
-				.getRequestDispatcher("/WEB-INF/views/board/view.jsp")
+				.getRequestDispatcher("/WEB-INF/views/board/list.jsp")
 				.forward(request, response);
 		}
 	}

@@ -17,6 +17,7 @@
 		<jsp:include page="/WEB-INF/views/includes/header.jsp" />
 		<div id="content">
 			<div id="board" class="board-form">
+				
 				<table class="tbl-ex">
 					<tr>
 						<th colspan="2">글보기</th>
@@ -34,8 +35,9 @@
 						</td>
 					</tr>
 				</table>
+				
 				<div class="bottom">
-					<a href="">글목록</a>
+					<a href="${pageContext.request.contextPath}">글목록</a>
 					 <c:if test="${authUser != null}">
 					 <a href="${pageContext.request.contextPath}/board?a=modify&no=${Boardvo.getNo }">글수정</a>
 					 </c:if>

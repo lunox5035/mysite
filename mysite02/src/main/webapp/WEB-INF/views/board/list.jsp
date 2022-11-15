@@ -1,10 +1,12 @@
 <%@page import="com.bitacademy.mysite.vo.UserVo"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%
 	UserVo authUser = (UserVo)session.getAttribute("authUser");
+	pageContext.setAttribute("newline", "\n");
 %>
 <!DOCTYPE html>
 <html>
@@ -15,11 +17,11 @@
 </head>
 <body>
 	<div id="container">
-		<jsp:include page="/WEB-INF/views/includes/header.jsp"/>
+		<jsp:include page="/WEB-INF/views/includes/header.jsp" />
 		<div id="content">
 			<div id="board">
 				<form id="search_form" action="${pageContext.request.contextPath}/board" method="post">
-					<input type="text" id="kwd" name="kwd" value="">
+					<input type="text" id="kwd" name="kwd" value=""> 
 					<input type="submit" value="찾기">
 				</form>
 				<table class="tbl-ex">
@@ -30,46 +32,46 @@
 						<th>조회수</th>
 						<th>작성일</th>
 						<th>&nbsp;</th>
-					</tr>	
-							
-			
-					
-					<tr>
-						<td></td>
-											
-						<td><a href="${pageContext.request.contextPath }/board?a=view&no=${Boardvo.getNo }">첫 번째 글입니다.</a></td>
-						<td>${Uservo.getName }</td>
-						<td>${Boardvo.getHit }</td>
-						<td>${boardVo.getRegDate }</td>
-						<td><a href="${pageContext.request.contextPath }/board" class="del">삭제</a></td>
 					</tr>
-			
-		
+
+					<c:set var="count" value="${fn:length(list) }" />
+					<c:forEach items="${list }" var="BoardVo" varStatus="status">
+						<tr>
+							<td>${status.index+1 }</td>
+							<td style="text-align:left; padding-left:${0*20}px">
+								<c:if test="${BoardVo.depth !=0 }">
+								<c:forEach var="${BoardVo.depth }" items="">
+								<img src='${pageContext.request.contextPath }/assets/images/reply.png' />
+								</c:forEach>
+								</c:if>															
+								<a href="${pageContext.request.contextPath }/board?a=view&no=${BoardVo.no }">
+									${BoardVo.title } 
+								</a>
+							</td>
+							<td>${BoardVo.name }</td>
+							<td>${BoardVo.hit }</td>
+							<td>${BoardVo.regDate }</td>
+							<td>
+								<a href="${pageContext.request.contextPath }/board?a=delete&na=${BoardVo.no }" class="del">삭제</a>
+							</td>
+						</tr>
+					</c:forEach>
+						
 				</table>
+
+				<!-- pager 추가 -->
 				
-				<!-- pager 추가 -->
-				<div class="pager">
-					<ul>
-						<li><a href="">◀</a></li>
-						<li><a href="">1</a></li>
-						<li class="selected">2</li>
-						<li><a href="">3</a></li>
-						<li>4</li>
-						<li>5</li>
-						<li><a href="">▶</a></li>
-					</ul>
-				</div>					
-				<!-- pager 추가 -->
 				
 				<c:if test="${authUser != null}">
 				
 				<div class="bottom">
-					<a href="" id="new-book">글쓰기</a>
+					<a href="${pageContext.request.contextPath }/board?a=writeform" id="new-book">글쓰기</a>
 				</div>	
 				</c:if>
 			</div>
 		</div>
-		<jsp:include page="/WEB-INF/views/includes/navigation.jsp"/>
-		<jsp:include page="/WEB-INF/views/includes/footer.jsp"/>
+	</div>
+	<jsp:include page="/WEB-INF/views/includes/navigation.jsp" />
+	<jsp:include page="/WEB-INF/views/includes/footer.jsp" />
 </body>
 </html>
