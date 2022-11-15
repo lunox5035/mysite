@@ -178,7 +178,54 @@ public class BoardDao {
 
 	}
 
-//=====================================================================	
+	//=====================================================================	
+
+	public BoardVo view(Long no) {
+		BoardVo result =null;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = getConnection();
+			String sql ="select title,contents from board where no=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setLong(1, no);
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				String title = rs.getString(1);
+				String contentse = rs.getString(2);
+				
+				result = new BoardVo();
+				result.setTitle(title);
+				result.setContents(contentse);
+				
+				}
+		} catch (SQLException e) {
+			System.out.println("Error : " + e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return result;
+	}
+	
+	//=====================================================================	
 
 	public List<BoardVo> findAll() {
 		List<BoardVo> result = new ArrayList<>();
@@ -194,7 +241,7 @@ public class BoardDao {
 					  "a.title, "+
 					  "a.contents, "+
 					  "a.hit, "+
-					  " date_format(a.reg_date, '%Y/%m/%d %H:%i:%s' ), "+
+					  "date_format(a.reg_date, '%Y/%m/%d %H:%i:%s' ), "+
 					  "a.group_no, "+
 					  "a.order_no, "+
 					  "a.depth, "+

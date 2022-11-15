@@ -40,9 +40,12 @@
 							<td>${status.index+1 }</td>
 							<td style="text-align:left; padding-left:${0*20}px">
 								<c:if test="${BoardVo.depth !=0 }">
-								<c:forEach var="${BoardVo.depth }" items="">
+								
+								
+								<c:forEach  begin="0" end="${BoardVo.depth-1 }" step="1">
 								<img src='${pageContext.request.contextPath }/assets/images/reply.png' />
 								</c:forEach>
+								
 								</c:if>															
 								<a href="${pageContext.request.contextPath }/board?a=view&no=${BoardVo.no }">
 									${BoardVo.title } 

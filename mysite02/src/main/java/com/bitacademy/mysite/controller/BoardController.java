@@ -10,8 +10,12 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.User;
 
+import com.bitacademy.emaillist.dao.EmaillistDao;
+import com.bitacademy.emaillist.vo.EmaillistVo;
 import com.bitacademy.mysite.dao.BoardDao;
+import com.bitacademy.mysite.dao.UserDao;
 import com.bitacademy.mysite.vo.BoardVo;
+import com.bitacademy.mysite.vo.UserVo;
 
 public class BoardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -38,13 +42,26 @@ public class BoardController extends HttpServlet {
 			
 //=================================================================================
 		}else if("view".equals(action)) {
+			
+			String title = request.getParameter("title");
+			String contents = request.getParameter("contents");
+			
+			BoardVo vo = new BoardVo();
+			vo.setTitle(title);
+			vo.setContents(contents);
+			
+			String firstName = request.getParameter("no");
+			String lastName = request.getParameter("ln");
+			String email = request.getParameter("email");
+			
+			BoardVo vo = new BoardVo();
+			vo.BoardVo(no);
+			
+			new EmaillistDao().insert(vo);
+			
 			request
 			.getRequestDispatcher("/WEB-INF/views/board/view.jsp")
 			.forward(request, response);
-			
-//		}else if("view".equals(action)) {
-//			HttpSession session = request.getSession();
-//			BoardVo authUser  = (BoardVo)session.getAttribute("authUser ");
 		
 //=================================================================================			
 		}else if("modify".equals(action)) {
