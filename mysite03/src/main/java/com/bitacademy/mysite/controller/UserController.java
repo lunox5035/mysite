@@ -69,13 +69,16 @@ public class UserController {
 		return "redirect:/"; 
 	}
 	
-	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	@RequestMapping(value="/update", method=RequestMethod.GET)
 	public String update(Model model, HttpSession session) {
-		
+		// Access Control
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		if(authUser == null) {
-			
+			return "redirect:/";
 		}
+		
+		UserVo vo = userService.findUser(authUser.getNo());
+		model.addAttribute("userVo", vo);
 		return "user/update";
 		
 	}

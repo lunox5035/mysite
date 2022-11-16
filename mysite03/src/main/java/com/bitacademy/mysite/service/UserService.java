@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import com.bitacademy.mysite.repository.UserRepository;
 import com.bitacademy.mysite.vo.UserVo;
-
 @Service
 public class UserService {
 	@Autowired
