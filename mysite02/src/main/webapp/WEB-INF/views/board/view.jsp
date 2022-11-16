@@ -16,7 +16,7 @@ pageContext.setAttribute("newline", "\n");
 </head>
 <body>
 	<div id="container">
-		<jsp:include page="/WEB-INF/views/includes/header.jsp" />
+		<c:import url="/WEB-INF/views/includes/header.jsp" />
 		<div id="content">
 			<div id="board" class="board-form">
 				
@@ -42,17 +42,15 @@ pageContext.setAttribute("newline", "\n");
 				
 				<div class="bottom">
 					<a href="${pageContext.request.contextPath}">글목록</a>
-					 <c:if test="${authUser != null && BoardVo.no==authUser.no}">
+					<c:if test="${authUser != null && BoardVo.userNo==authUser.no}">
 					 
-					 <a href="${pageContext.request.contextPath}/board?a=modify&no=${Boardvo.getNo }">글수정</a>
-					 </c:if>
-					 <a href="${pageContext.request.contextPath}">답글</a>
-					
+					<a href="${pageContext.request.contextPath}/board?a=modify&no=${param.no }">글수정</a>
+					</c:if>
 				</div>
 			</div>
 		</div>
-		<jsp:include page="/WEB-INF/views/includes/navigation.jsp" />
-		<jsp:include page="/WEB-INF/views/includes/footer.jsp" />
+		<c:import url="/WEB-INF/views/includes/navigation.jsp" />
+		<c:import url="/WEB-INF/views/includes/footer.jsp" />
 	</div>
 </body>
 </html>

@@ -17,6 +17,51 @@ import com.bitacademy.mysite.vo.BoardVo;
 import com.bitacademy.mysite.vo.UserVo;
 
 public class BoardDao {
+	
+	public boolean relpy(BoardVo vo) {
+		boolean result = false;
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			conn = getConnection();
+
+			String sql = "insert into board values (null,?,?, 0,now(),?,?,?,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getTitle());
+			pstmt.setString(2, vo.getContents());
+			pstmt.setLong(3, vo.getGroupNo());
+			pstmt.setLong(4, vo.getOrderNo());
+			pstmt.setLong(5, vo.getDepth());
+			pstmt.setLong(6, vo.getUserNo());
+
+			int count = pstmt.executeUpdate();
+
+			// 5. 결과 처리
+			result = count == 1;
+
+		} catch (SQLException e) {
+			System.out.println("Error:" + e);
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return result;
+	}
+	
+//=================================================================================
+
 	public BoardVo findByNo(Long no) {
 		BoardVo result = null;
 
@@ -189,7 +234,7 @@ public class BoardDao {
 
 		try {
 			conn = getConnection();
-			String sql ="select title,contents from board where no=?";
+			String sql ="select title,contents,user_no from board where no=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setLong(1, no);
 			
@@ -198,10 +243,12 @@ public class BoardDao {
 			while (rs.next()) {
 				String title = rs.getString(1);
 				String contents = rs.getString(2);
+				Long user_no = rs.getLong(3);
 				
 				result = new BoardVo();
 				result.setTitle(title);
 				result.setContents(contents);
+				result.setUserNo(user_no);
 				
 				}
 		} catch (SQLException e) {

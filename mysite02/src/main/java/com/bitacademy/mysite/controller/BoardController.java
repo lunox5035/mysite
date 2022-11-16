@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import com.bitacademy.mysite.dao.BoardDao;
+import com.bitacademy.mysite.dao.UserDao;
 import com.bitacademy.mysite.vo.BoardVo;
+import com.bitacademy.mysite.vo.UserVo;
 
 public class BoardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -48,19 +50,41 @@ public class BoardController extends HttpServlet {
 			.forward(request, response);
 		
 //=================================================================================			
-		}else if("modify".equals(action)) {
+		}else if("modifyform".equals(action)) {
+			
+			
 			request
 			.getRequestDispatcher("/WEB-INF/views/board/modify.jsp")
 			.forward(request, response);
 			
-//		}else if("modify".equals(action)) {
-//			request
-//			.getRequestDispatcher("/WEB-INF/views/board/write.jsp")
-//			.forward(request, response);
+		}else if("modify".equals(action)) {
+			
+			String name = request.getParameter("name");
+			String password = request.getParameter("password");
+			String gender = request.getParameter("gender");
+			
+			UserVo vo = new UserVo();
+			vo.setNo(authUser.getNo());
+			vo.setName(name);
+			vo.setPassword(password);
+			vo.setGender(gender);
+			
+			// update db
+			new UserDao().update(vo);
+			
+			// update session
+			authUser.setName(name);
+			
+			response.sendRedirect(request.getContextPath() + "/borad?a=updateform");
 			
 //=================================================================================
-		}else if("".equals(action)) {
+		}else if("reply".equals(action)) {
 			
+			
+			request
+				.getRequestDispatcher("/WEB-INF/views/board/reply.jsp")
+				.forward(request, response);	
+//=================================================================================
 				
 //		}else if("".equals(action)) {
 //			request
