@@ -2,9 +2,17 @@ package com.bitacademy.mysite.service;
 
 import java.util.Map;
 
-import com.bitacademy.mysite.vo.BoardVo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.bitacademy.mysite.repository.BoardRepository;
+import com.bitacademy.mysite.repository.UserRepository;
+import com.bitacademy.mysite.vo.BoardVo;
+@Service
 public class BoardService {
+	@Autowired
+	private BoardRepository boardRepository;
+	
 	
 	public void addContents(BoardVo vo) {
 	}

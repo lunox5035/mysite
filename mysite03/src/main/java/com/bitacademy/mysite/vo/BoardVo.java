@@ -12,6 +12,7 @@ public class BoardVo {
 	private Integer groupNo;
 	private Integer orderNo;
 	private Integer depth;
+	
 	public Long getNo() {
 		return no;
 	}
