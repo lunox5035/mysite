@@ -42,7 +42,7 @@ pageContext.setAttribute("newline", "\n");
 				
 				<div class="bottom">
 					<a href="${pageContext.request.contextPath}">글목록</a>
-					<c:if test="${authUser != null && BoardVo.userNo==authUser.no}">
+					<c:if test="${BoardVo.userNo==authUser.no}">
 					 
 					<a href="${pageContext.request.contextPath}/board?a=modify&no=${param.no }">글수정</a>
 					</c:if>

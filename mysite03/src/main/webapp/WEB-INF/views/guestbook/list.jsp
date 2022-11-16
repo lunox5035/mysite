@@ -13,15 +13,13 @@
 </head>
 <body>
 	<div id="container">
-		<jsp:include page="/WEB-INF/views/includes/header.jsp"/>
-		<div id="content">
+		<c:import url="/WEB-INF/views/includes/header.jsp" />		<div id="content">
 			<div id="guestbook">
-				<form action="${pageContext.request.contextPath}/guestbook" method="post">
-					<input type="hidden" name="a" value="insert">
+				<form action="${pageContext.request.contextPath}/guestbook/add" method="post">
 					<table>
 						<tr>
 							<td>이름</td><td><input type="text" name="name"></td>
-							<td>비밀번호</td><td><input type="password" name="pass"></td>
+							<td>비밀번호</td><td><input type="password" name="password"></td>
 						</tr>
 						<tr>
 							<td colspan=4><textarea name="content" id="content"></textarea></td>
@@ -39,8 +37,8 @@
 							<tr>
 								<td>${count }</td>
 								<td>${vo.name }</td>
-								<td>${vo.regDate }</td>>
-								<td><a href="${pageContext.request.contextPath}/guestbook?a=deleteform&no=${UserVo.no}">삭제</a></td>
+								<td>${vo.reg_date }</td>
+									<td><a href="${pageContext.request.contextPath}/guestbook/delete/${vo.no}">삭제</a></td>
 							</tr>
 							<tr>
 								<td colspan=4>${vo.contents }</td>
@@ -52,7 +50,8 @@
 				</ul>
 			</div>
 		</div>
-		<jsp:include page="/WEB-INF/views/includes/navigation.jsp"/>
-		<jsp:include page="/WEB-INF/views/includes/footer.jsp"/>
+		<c:import url="/WEB-INF/views/includes/navigation.jsp" />
+		<c:import url="/WEB-INF/views/includes/footer.jsp" />
+		</div>
 </body>
 </html>

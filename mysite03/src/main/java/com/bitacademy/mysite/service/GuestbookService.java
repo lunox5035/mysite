@@ -8,19 +8,24 @@ import org.springframework.stereotype.Service;
 import com.bitacademy.mysite.repository.GuestbookRepository;
 import com.bitacademy.mysite.vo.GuestbookVo;
 @Service
-public class GuestbookService {
+public class GuestbookService  {
 	
 	@Autowired
 	private GuestbookRepository guestbookRepository;
-	
+
+	//○
 	public List<GuestbookVo> getContentsList() {
-		return null;
+		return guestbookRepository.findAll();
 	}
 	
+	//○
 	public void deleteContents(Long no, String password) {
+		guestbookRepository.deleteByNoAndPassword(no, password);
 	}
 
+
 	public void addContents(GuestbookVo vo) {
+		guestbookRepository.insert(vo);
 	}
 	
 }
