@@ -1,8 +1,10 @@
+<%@page import="com.bitacademy.mysite.vo.UserVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%
+UserVo authUser = (UserVo)session.getAttribute("authUser");
 pageContext.setAttribute("newline", "\n");
 %>
 <!DOCTYPE html>
@@ -32,7 +34,7 @@ pageContext.setAttribute("newline", "\n");
 						<td class="label">내용</td>
 						<td>
 							<div class="view-content">
-								${fn:replace(vo.contents,newline,'<br/>') }
+								${fn:replace(BoardVo.contents,newline,'<br/>') }
 							</div>
 						</td>
 					</tr>

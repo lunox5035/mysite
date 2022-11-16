@@ -6,16 +6,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import org.apache.catalina.User;
 
-import com.bitacademy.emaillist.dao.EmaillistDao;
-import com.bitacademy.emaillist.vo.EmaillistVo;
 import com.bitacademy.mysite.dao.BoardDao;
-import com.bitacademy.mysite.dao.UserDao;
 import com.bitacademy.mysite.vo.BoardVo;
-import com.bitacademy.mysite.vo.UserVo;
 
 public class BoardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -43,21 +37,11 @@ public class BoardController extends HttpServlet {
 //=================================================================================
 		}else if("view".equals(action)) {
 			
-			String title = request.getParameter("title");
-			String contents = request.getParameter("contents");
+			String sno = request.getParameter("no");
+			Long no= Long.parseLong(sno);
 			
-			BoardVo vo = new BoardVo();
-			vo.setTitle(title);
-			vo.setContents(contents);
-			
-			String firstName = request.getParameter("no");
-			String lastName = request.getParameter("ln");
-			String email = request.getParameter("email");
-			
-			BoardVo vo = new BoardVo();
-			vo.BoardVo(no);
-			
-			new EmaillistDao().insert(vo);
+			BoardVo vo = new BoardDao().view(no);
+			request.setAttribute("BoardVo", vo);
 			
 			request
 			.getRequestDispatcher("/WEB-INF/views/board/view.jsp")

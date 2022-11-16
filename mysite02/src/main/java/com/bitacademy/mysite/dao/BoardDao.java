@@ -197,11 +197,11 @@ public class BoardDao {
 			
 			while (rs.next()) {
 				String title = rs.getString(1);
-				String contentse = rs.getString(2);
+				String contents = rs.getString(2);
 				
 				result = new BoardVo();
 				result.setTitle(title);
-				result.setContents(contentse);
+				result.setContents(contents);
 				
 				}
 		} catch (SQLException e) {
