@@ -13,7 +13,8 @@
 </head>
 <body>
 	<div id="container">
-		<c:import url="/WEB-INF/views/includes/header.jsp" />		<div id="content">
+		<c:import url="/WEB-INF/views/includes/header.jsp" />		
+		<div id="content">
 			<div id="guestbook">
 				<form action="${pageContext.request.contextPath}/guestbook/add" method="post">
 					<table>
@@ -22,10 +23,11 @@
 							<td>비밀번호</td><td><input type="password" name="password"></td>
 						</tr>
 						<tr>
-							<td colspan=4><textarea name="content" id="content"></textarea></td>
+							<td colspan=4><textarea name="contents" id="contents"></textarea></td>
 						</tr>
 						<tr>
-							<td colspan=4 align=right><input type="submit" VALUE=" 확인 "></td>
+							<td colspan=4 align=right>
+							<input type="submit" VALUE=" 확인 "></td>
 						</tr>
 					</table>
 				</form>
@@ -38,10 +40,10 @@
 								<td>${count }</td>
 								<td>${vo.name }</td>
 								<td>${vo.reg_date }</td>
-									<td><a href="${pageContext.request.contextPath}/guestbook/delete/${vo.no}">삭제</a></td>
+									<td><a href="${pageContext.request.contextPath}/delete/${vo.no}">삭제</a></td>
 							</tr>
 							<tr>
-								<td colspan=4>${vo.contents }</td>
+								<td colspan=4>${fn:replace(vo.contents, newLine , '<br/>' )}	</td>
 							</tr>
 						</table>
 						<br>
