@@ -9,8 +9,7 @@
 		]]>
 	</insert>
 
-	<select id="findByEmailAndPassword" resultType="uservo"
-		parameterType="map">
+	<select id="findByEmailAndPassword" resultType="uservo"	parameterType="map">
 		<![CDATA[
 		select no, name
 		  from user

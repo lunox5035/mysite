@@ -11,7 +11,7 @@
 <body>
 <h1>Excepion Occurs</h1>
 <pre>
-	${execption }
+	${exception }
 </pre>
 
 </body>

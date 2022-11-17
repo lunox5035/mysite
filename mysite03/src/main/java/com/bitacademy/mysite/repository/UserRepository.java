@@ -27,10 +27,10 @@ public class UserRepository {
 	
 	public UserVo findByEmailAndPassword(String email, String password) {
 		Map<String, Object> map =new HashMap<>();
-		map.put(email, email);
-		map.put(password, password);
+		map.put("email", email);
+		map.put("password", password);
 		
-		return sqlsession.selectOne("User.findByEmailAndPassword",map);		
+		return sqlsession.selectOne("user.findByEmailAndPassword",map);		
 	}
 	
 	public Boolean insert(UserVo vo) {
