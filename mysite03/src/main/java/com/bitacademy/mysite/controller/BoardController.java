@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bitacademy.mysite.service.BoardService;
 
@@ -14,8 +15,10 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 
-	@RequestMapping()
-	private String findContents(@PathVariable("no") Long no, Long userNo) {
+	@RequestMapping("")
+	private String list(
+			@RequestParam(value = "no", required = true,defaultValue ="")Long no,
+			Long userNo) {
 		boardService.findContents(no, userNo);
 		
 		return "board/list";

@@ -29,7 +29,7 @@ public class GuestbookController {
 	}
 	
 	
-	//
+	//O
 	@RequestMapping("/add")
 	public String add(GuestbookVo vo) {
 		guestbookService.addContents(vo);

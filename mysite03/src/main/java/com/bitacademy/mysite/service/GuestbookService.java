@@ -23,7 +23,7 @@ public class GuestbookService  {
 		guestbookRepository.deleteByNoAndPassword(no, password);
 	}
 
-	//
+	//O
 	public void addContents(GuestbookVo vo) {
 		guestbookRepository.insert(vo);
 	}

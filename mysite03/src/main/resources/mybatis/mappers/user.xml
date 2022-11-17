@@ -19,7 +19,9 @@
 
 	<select id="findByNo" resultType="uservo" parameterType="long">
 		<![CDATA[
-		select name, email, gender from user where no=#{no }
+		select name, email, gender 
+		from user 
+		where no=#{no }
 		]]>
 	</select>
 
