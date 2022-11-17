@@ -38,6 +38,12 @@
 		    <artifactId>spring-web</artifactId>
 		    <version>${org.springframework-version}</version>
 		</dependency>
+		<!-- Spring JDBC -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-jdbc</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
 
 		<!-- Apache Commons DBCP -->
 		<dependency>
@@ -60,7 +66,6 @@
 			<artifactId>mybatis</artifactId>
 			<version>3.2.2</version>
 		</dependency>
-		
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis-spring</artifactId>

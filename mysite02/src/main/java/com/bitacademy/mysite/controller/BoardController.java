@@ -15,7 +15,7 @@ import com.bitacademy.mysite.vo.UserVo;
 public class BoardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response, BoardVo authUser) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("a");
 		
 		if("writeform".equals(action)) {
