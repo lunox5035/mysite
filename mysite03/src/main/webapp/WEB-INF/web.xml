@@ -36,6 +36,12 @@
 		<servlet-name>spring</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>	
+<!-- common page -->
+<error-page>
+<error-code>500</error-code>
+<location>/WEB-INF/viewa/error/500.jsp</location>
+
+</error-page>
 
 	<!-- Welcome File List -->
   <welcome-file-list>
