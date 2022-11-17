@@ -15,17 +15,22 @@ public class BoardService {
 	
 	
 	public void addContents(BoardVo vo) {
+		boardRepository.insert(vo);
+		
 	}
 	
-	public BoardVo findContents(Long no) {
-		return null;
-	}
+//	public BoardVo findContents(Long no) {
+//		
+//		return boardRepository.;
+//	}
 	
 	public BoardVo findContents(Long no, Long userNo) {
+		
 		return null;
 	}
 	
 	public Map<String, Object> findContentsList(int currentPage){
+		
 		// view의 페이징을 처리하기 위한 데이터의 값 계산
 		int beginPage = 0;
 		int endPage = 0;
@@ -37,8 +42,10 @@ public class BoardService {
 	}
 	
 	public void updateContents(BoardVo vo) {
+		boardRepository.update(vo);
 	}
-	
-	public void deleteContents(Long no, Long UserNo) {
-	}
+		
+//	public void deleteContents(Long no, Long UserNo) {
+//		boardRepository.delete(no,UserNo);
+//	}
 }

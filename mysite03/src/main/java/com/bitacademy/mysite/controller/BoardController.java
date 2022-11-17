@@ -14,10 +14,12 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 
-	@RequestMapping
+	@RequestMapping()
 	private String findContents(@PathVariable("no") Long no, Long userNo) {
 		boardService.findContents(no, userNo);
 		
 		return "board/list";
 	}
+	
+	
 }

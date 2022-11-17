@@ -1,13 +1,15 @@
 package com.bitacademy.mysite.repository;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.bitacademy.mysite.vo.GuestbookVo;
@@ -15,6 +17,8 @@ import com.bitacademy.mysite.vo.GuestbookVo;
 
 @Repository
 public class GuestbookRepository {
+	@Autowired
+	private DataSource dataSource;
 	
 	public Boolean insert(GuestbookVo vo) {
 		boolean result = false;
@@ -23,7 +27,7 @@ public class GuestbookRepository {
 		PreparedStatement pstmt = null;
 		
 		try {
-			conn = getConnection();
+			conn = dataSource.getConnection();
 			//3. Statement 생성
 			String sql = "insert into gustbook values(null,?,?,?,now())";
 			pstmt = conn.prepareStatement(sql);
@@ -65,7 +69,7 @@ public class GuestbookRepository {
 	PreparedStatement pstmt = null;
 	
 	try {
-		conn = getConnection();
+		conn = dataSource.getConnection();
 		
 		//3. Statement 생성
 		String sql = "delete from gustbook where no = ? and password = ?";
@@ -107,7 +111,7 @@ public class GuestbookRepository {
 		ResultSet rs = null;
 		
 		try {
-			conn = getConnection();
+			conn = dataSource.getConnection();
 
 			String sql = 
 					"   select no, name, contents, date_format(reg_date, '%Y/%m/%d %H:%i:%s')" + 
@@ -155,18 +159,5 @@ public class GuestbookRepository {
 		return result;
 	}
 //===========================================================================	
-	private Connection getConnection() throws SQLException {
-		Connection conn = null;
-
-		try {
-			Class.forName("org.mariadb.jdbc.Driver");
-			
-			String url = "jdbc:mysql://127.0.0.1:3306/webdb?charset=utf8";
-			conn = DriverManager.getConnection(url, "webdb", "webdb");
-		} catch (ClassNotFoundException e) {
-			System.out.println("드라이버 로딩 실패:" + e);
-		} 
-		
-		return conn;
-	}
+	
 }
