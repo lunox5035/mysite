@@ -22,7 +22,7 @@ public class UserRepository {
 	}
 
 	public UserVo findByNo(Long no) {
-		return sqlsession.selectOne(null);
+		return sqlsession.selectOne("user.findByNo",no);
 	}
 	
 	public UserVo findByEmailAndPassword(String email, String password) {

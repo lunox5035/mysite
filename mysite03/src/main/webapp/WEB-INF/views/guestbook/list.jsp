@@ -2,7 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> 
-
 <% pageContext.setAttribute("newLine", "\n"); %>
 <!DOCTYPE html>
 <html>
@@ -40,7 +39,7 @@
 								<td>${count }</td>
 								<td>${vo.name }</td>
 								<td>${vo.reg_date }</td>
-									<td><a href="${pageContext.request.contextPath}/delete/${vo.no}">삭제</a></td>
+									<td><a href="${pageContext.request.contextPath}/guestbook/delete/${vo.no}">삭제</a></td>
 							</tr>
 							<tr>
 								<td colspan=4>${fn:replace(vo.contents, newLine , '<br/>' )}	</td>

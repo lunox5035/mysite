@@ -20,8 +20,8 @@ public class GuestbookController {
 	@Autowired
 	private GuestbookService guestbookService;
 
-	//○
-	@RequestMapping
+	//O
+	@RequestMapping("")
 	public String getContentsList(Model model) {
 		List<GuestbookVo> list = guestbookService.getContentsList();
 		model.addAttribute("list", list);
@@ -29,13 +29,13 @@ public class GuestbookController {
 	}
 	
 	
-	
+	//
 	@RequestMapping("/add")
 	public String add(GuestbookVo vo) {
 		guestbookService.addContents(vo);
 		return "redirect:/guestbook";
 	}
-	//○
+	//O
 	@RequestMapping(value = "/delete/{no}", method = RequestMethod.GET)
 	public String deleteContents (@PathVariable("no") Long no, Model model) {
 		model.addAttribute("no", no);
@@ -44,7 +44,7 @@ public class GuestbookController {
 		return "guestbook/delete";
 	}
 
-	//○
+	//O
 	@RequestMapping(value = "/delete/{no}", method = RequestMethod.POST)
 	public String deleteContents(
 			@PathVariable("no") Long no,

@@ -13,17 +13,17 @@ public class GuestbookService  {
 	@Autowired
 	private GuestbookRepository guestbookRepository;
 
-	//○
+	//O
 	public List<GuestbookVo> getContentsList() {
 		return guestbookRepository.findAll();
 	}
 	
-	//○
+	//O
 	public void deleteContents(Long no, String password) {
 		guestbookRepository.deleteByNoAndPassword(no, password);
 	}
 
-
+	//
 	public void addContents(GuestbookVo vo) {
 		guestbookRepository.insert(vo);
 	}
