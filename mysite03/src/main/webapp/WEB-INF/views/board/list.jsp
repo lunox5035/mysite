@@ -2,9 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%
-	pageContext.setAttribute("newline", "\n");
-%>
+<%	pageContext.setAttribute("newline", "\n");%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +30,7 @@
 					</tr>
 
 					<c:set var="count" value="${fn:length(list) }" />
-					<c:forEach items="${list }" var="BoardVo" varStatus="status">
+					<c:forEach items="${list }" var="vo" varStatus="status">
 						<tr>
 							<td>${status.index+1 }</td>
 							<td style="text-align:left; padding-left:${0*20}px">
@@ -48,9 +46,9 @@
 									${BoardVo.title } 
 								</a>
 							</td>
-							<td>${BoardVo.name }</td>
-							<td>${BoardVo.hit }</td>
-							<td>${BoardVo.regDate }</td>
+							<td>${vo.name }</td>
+							<td>${vo.hit }</td>
+							<td>${vo.regDate }</td>
 							<td>
 								<a href="${pageContext.request.contextPath }/board?a=delete&na=${BoardVo.no }" class="del">삭제</a>
 							</td>

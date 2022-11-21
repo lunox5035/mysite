@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bitacademy.mysite.service.BoardService;
+import com.bitacademy.mysite.vo.BoardVo;
 
 @Controller
 @RequestMapping("/board")
@@ -14,7 +15,7 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService boardService;
-
+	
 	@RequestMapping("")
 	private String list(
 			@RequestParam(value = "no", required = true,defaultValue ="")Long no,
@@ -24,5 +25,9 @@ public class BoardController {
 		return "board/list";
 	}
 	
-	
+//	@RequestMapping("/add")
+//	public String add(BoardVo vo) {
+//		
+//	}
+//	
 }
