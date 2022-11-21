@@ -24,7 +24,7 @@ public class GuestbookController {
 	public String index(Model model) {
 		List<GuestbookVo> list  = guestbookService.getContentsList();
 		model.addAttribute("list", list);
-		return "guestbook/index";
+		return "guestbook/list";
 	}
 	
 	@RequestMapping("/add")

@@ -34,29 +34,40 @@
 						<tr>
 							<td>${status.index+1 }</td>
 							<td style="text-align:left; padding-left:${0*20}px">
-								<c:if test="${BoardVo.depth !=0 }">
+								<c:if test="${vo.depth !=0 }">
 								
 								
-								<c:forEach  begin="0" end="${BoardVo.depth-1 }" step="1">
+								<c:forEach  begin="0" end="${vo.depth-1 }" step="1">
 								<img src='${pageContext.request.contextPath }/assets/images/reply.png' />
 								</c:forEach>
 								
 								</c:if>															
-								<a href="${pageContext.request.contextPath }/board?a=view&no=${BoardVo.no }">
-									${BoardVo.title } 
+								<a href="${pageContext.request.contextPath }/board/view/${vo.no }">
+									${vo.title } 
 								</a>
 							</td>
 							<td>${vo.name }</td>
 							<td>${vo.hit }</td>
 							<td>${vo.regDate }</td>
 							<td>
-								<a href="${pageContext.request.contextPath }/board?a=delete&na=${BoardVo.no }" class="del">삭제</a>
+								<a href="${pageContext.request.contextPath }/board/delete/${vo.no }" class="del">삭제</a>
 							</td>
 						</tr>
 					</c:forEach>
 						
 				</table>
-
+				<!-- pager 추가 -->
+				<div class="pager">
+					<ul>
+						<li><a href="">◀</a></li>
+						<li><a href="">1</a></li>
+						<li class="selected">2</li>
+						<li><a href="">3</a></li>
+						<li>4</li>
+						<li>5</li>
+						<li><a href="">▶</a></li>
+					</ul>
+				</div>					
 				<!-- pager 추가 -->
 				
 				
