@@ -14,12 +14,16 @@ public class UserService {
 		userRepository.insert(userVo);
 	}
 
+	public UserVo findUser(String email, String password) {
+		return userRepository.findByEmailAndPassword(email, password);
+	}
+	
 	public UserVo findUser(UserVo userVo) {
-		return userRepository.findByEmailAndPassword(userVo.getEmail(), userVo.getPassword());
+		return findUser(userVo.getEmail(), userVo.getPassword());
 	}
 
 	public UserVo findUser(Long no) {
-		return userRepository.findByNo(no);
+			return userRepository.findByNo(no);
 	}
 
 	public void updateUser(UserVo userVo) {

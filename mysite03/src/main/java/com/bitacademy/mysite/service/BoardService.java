@@ -1,5 +1,7 @@
 package com.bitacademy.mysite.service;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,23 +20,28 @@ public class BoardService {
 		
 	}
 	
-//	public BoardVo findContents(Long no) {
-//		
-//		return boardRepository.;
-//	}
-	
-	public BoardVo findContents(Long no, Long userNo) {
+	public BoardVo findContents(Long no) {
 		
-		return null;
+		return boardRepository.findByNo(no);
 	}
+	
+	//수정하는 화면갈때
+//	public BoardVo findContents(Long no, Long userNo) {
+//		
+//		return boardRepository.findByNoAndUserNo(no,userNo);
+//	}
 	
 	public Map<String, Object> findContentsList(int currentPage){
 		
 		// view의 페이징을 처리하기 위한 데이터의 값 계산
-		int beginPage = 0;
-		int endPage = 0;
-		
+		if (currentPage<1){
+			int beginPage = 1;
+			int endPage = 1;
+		}
 		// 리스트 가져오기
+		List<BoardVo> list = boardRepository.findAll();
+		
+		
 		
 		
 		return null;

@@ -15,19 +15,17 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService boardService;
-	
+
 	@RequestMapping("")
 	private String list(
 			@RequestParam(value = "no", required = true,defaultValue ="")Long no,
 			Long userNo) {
-		boardService.findContents(no, userNo);
+		boardService.findContents(no);
 		
 		return "board/list";
 	}
 	
 //	@RequestMapping("/add")
 //	public String add(BoardVo vo) {
-//		
 //	}
-//	
 }

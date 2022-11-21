@@ -20,39 +20,30 @@ public class GuestbookController {
 	@Autowired
 	private GuestbookService guestbookService;
 
-	//O
 	@RequestMapping("")
-	public String getContentsList(Model model) {
-		List<GuestbookVo> list = guestbookService.getContentsList();
+	public String index(Model model) {
+		List<GuestbookVo> list  = guestbookService.getContentsList();
 		model.addAttribute("list", list);
-		return "guestbook/list";
+		return "guestbook/index";
 	}
 	
-	
-	//O
 	@RequestMapping("/add")
 	public String add(GuestbookVo vo) {
 		guestbookService.addContents(vo);
 		return "redirect:/guestbook";
 	}
-	//O
-	@RequestMapping(value = "/delete/{no}", method = RequestMethod.GET)
-	public String deleteContents (@PathVariable("no") Long no, Model model) {
-		model.addAttribute("no", no);
-		System.out.println(no);
 	
+	@RequestMapping(value="/delete/{no}", method=RequestMethod.GET)
+	public String delete(@PathVariable("no") Long no, Model model) {
+		model.addAttribute("no", no);
 		return "guestbook/delete";
 	}
 
-	//O
-	@RequestMapping(value = "/delete/{no}", method = RequestMethod.POST)
-	public String deleteContents(
-			@PathVariable("no") Long no,
-			@RequestParam(value = "password",required = true,defaultValue = "") String password) {
-		
+	@RequestMapping(value="/delete/{no}", method=RequestMethod.POST)
+	public String delete(
+		@PathVariable("no") Long no,
+		@RequestParam(value="password", required=true, defaultValue="") String password) {
 		guestbookService.deleteContents(no, password);
 		return "redirect:/guestbook";
-	
-	}
-	
+	}	
 }
