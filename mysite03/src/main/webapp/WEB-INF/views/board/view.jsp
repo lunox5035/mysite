@@ -40,7 +40,7 @@
 				<div class="bottom">
 						<a href="${pageContext.request.contextPath}">글목록</a>
 					<c:if test="${not empty authUser}">
-						 <c:if test="${authUser.no == vo.userNo }">
+						 <c:if test="${authUser.name == vo.name }">
 						 <a href="${pageContext.request.contextPath}/board/modify/${vo.no }">글수정</a>
 						 </c:if>
 						
