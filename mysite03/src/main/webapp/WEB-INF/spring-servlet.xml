@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Web Application Context -->
 <beans
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:aop="http://www.springframework.org/schema/aop" 
@@ -18,11 +19,23 @@
 			<bean class="com.bitacademy.mysite.security.AuthUserHandlerMethodArgumentResolver"/>
 		</mvc:argument-resolvers>
 	</mvc:annotation-driven>
-
+<!-- MVC Resource Mapping --> <!-- 저장한 파일과 url을 맵핑 -->
+	<mvc:resources mapping="gallery/images/**" location="file:/mysite-uploads/" />
+	
+	<!-- Multipart Resolver -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 최대업로드 가능한 바이트크기 -->
+		<property name="maxUploadSize" value="52428800" />
+		<!-- 디스크에 임시 파일을 생성하기 전에 메모리에 보관할수있는 최대 바이트 크기 -->
+		<!-- property name="maxInMemorySize" value="52428800" / -->
+		<!-- defaultEncoding -->
+		<property name="defaultEncoding" value="utf-8" />
+	</bean>
+	
 	<!-- 서블릿 컨테이너의 디폴트 서블릿 위임 핸들러 -->
 	<mvc:default-servlet-handler />
 	
-	<!-- interceptors -->
+	<!-- Interceptors -->
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/user/auth"/>
@@ -40,14 +53,24 @@
 			<bean class="com.bitacademy.mysite.security.AuthInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
-
+	
+	<!-- Message Source -->
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+	      <list>
+			<value>messages/messages_ko</value>
+	      </list>
+	   </property>
+	</bean>
+	
 	<!-- ViewResolver -->
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	   <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
 	   <property name="prefix" value="/WEB-INF/views/" />
 	   <property name="suffix" value=".jsp" />
 	</bean>
-
+	
+	<!-- Annotation Configuration: Auto(자동) Bean(빈) scanning(스캐닝) -->
 
 	<context:annotation-config />
 	<context:component-scan base-package="com.bitacademy.mysite.controller, com.bitacademy.mysite.exception" />
