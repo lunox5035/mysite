@@ -34,13 +34,13 @@ public class UserRepository {
 		Map<String, Object> map =new HashMap<>();
 		map.put("email", email);
 		map.put("password", password);
-		UserVo resilt= SqlSession.selectOne("user.findByEmailAndPassword",map);		
+		UserVo result= sqlsession.selectOne("user.findByEmailAndPassword",map);		
 		
 		sw.stop();
 		Long totalTime = sw.getTotalTimeMillis();
-		System.out.println("------->"+ totalTime);
+		System.out.println("------->"+totalTime);
 		
-		return resilt;
+		return result;
 		//
 	}
 	
