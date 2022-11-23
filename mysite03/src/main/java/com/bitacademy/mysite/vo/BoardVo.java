@@ -5,14 +5,14 @@ public class BoardVo {
 	private Long no;
 	private String title;
 	private String contents;
-	private Long hit;
 	private String regDate;
-	private Long userNo;
+	private Long hit;
 
 	private Integer groupNo;
 	private Integer orderNo;
 	private Integer depth;
-	
+
+	private Long userNo;
 	private String name;
 
 	public Long getNo() {

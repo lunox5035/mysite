@@ -14,26 +14,10 @@ public class BoardService {
 	
 	@Autowired
 	private BoardRepository boardRepository;
-	
-	
-	public void addContents(BoardVo vo) {
-		boardRepository.insert(vo);
-		
-	}
-	
-	public BoardVo findContents(Long no) {
-		
-		return boardRepository.findByNo(no);
-	}
-	
-	//수정하는 화면갈때
-//	public BoardVo findContents(Long no, Long userNo) {
-//		
-//		return boardRepository.findByNoAndUserNo(no,userNo);
-//	}
-	
-//	public Map<String, Object> findContentsList(int currentPage){
-//		
+
+	//--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==
+//		public Map<String, Object> findContentsList(int currentPage){
+	//	
 //		// view의 페이징을 처리하기 위한 데이터의 값 계산
 //		if (currentPage<1){
 //			int beginPage = 1;
@@ -41,26 +25,49 @@ public class BoardService {
 //		}
 //		// 리스트 가져오기
 //		List<BoardVo> list = boardRepository.findAll();
-//		
+	//	
 //		Map<String,Object> map = new HashMap<String,Object>();
-//		
+	//	
 //		map.put("no",no);
 //		map.put("title", title);
 //		map.put("name", name);
 //		map.put("hit", hit);
 //		map.put("reg_date", reg-date);
-	
-	public List<BoardVo>  findContentsList() {
 		
-	
-		return boardRepository.findAll();
+		public List<BoardVo>  findContentsList() {
+			 List<BoardVo> list=boardRepository.findAll();
+			 
+			return list;
+		}
+	//--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==--==
+
+	public BoardVo findContents(Long no) {
+		
+		boardRepository.hitPuls(no);//hit +1
+		
+		return boardRepository.findByNo(no);
 	}
 	
+	//수정하는 화면갈때
+	public BoardVo findContents(Long no, Long userNo) {
+		
+		return boardRepository.findByNoAndUserNo(no,userNo);
+	}
+
+//-----------------------------------------------------------------------------
+
 	public void updateContents(BoardVo vo) {
 		boardRepository.update(vo);
 	}
+//-----------------------------------------------------------------------------
+	
+	public void addContents(BoardVo vo) {
+		boardRepository.insert(vo);
+	}
+
+
 		
-//	public void deleteContents(Long no, Long UserNo) {
-//		boardRepository.delete(no,UserNo);
-//	}
+	public void deleteContents(Long no, Long UserNo) {
+		boardRepository.delete(no,UserNo);
+	}
 }

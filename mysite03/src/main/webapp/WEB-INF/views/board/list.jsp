@@ -49,9 +49,14 @@
 							<td>${vo.name }</td>
 							<td>${vo.hit }</td>
 							<td>${vo.regDate }</td>
+							
+							<c:if test="${authUser.no == vo.userNo }">
 							<td>
+								<img src='${pageContext.request.contextPath }/assets/images/recycle.png'  style="width:20px"/>
 								<a href="${pageContext.request.contextPath }/board/delete/${vo.no }" class="del">삭제</a>
 							</td>
+							</c:if>
+							
 						</tr>
 					</c:forEach>
 						
@@ -74,13 +79,13 @@
 				<c:if test="${authUser != null}">
 				
 				<div class="bottom">
-					<a href="${pageContext.request.contextPath }/board?a=writeform" id="new-book">글쓰기</a>
+					<a href="${pageContext.request.contextPath }/board/write" id="new-book">글쓰기</a>
 				</div>	
 				</c:if>
 			</div>
 		</div>
+		<c:import url="/WEB-INF/views/includes/navigation.jsp" />
+		<c:import url="/WEB-INF/views/includes/footer.jsp" />
 	</div>
-	<c:import url="/WEB-INF/views/includes/navigation.jsp" />
-	<c:import url="/WEB-INF/views/includes/footer.jsp" />
 </body>
 </html>

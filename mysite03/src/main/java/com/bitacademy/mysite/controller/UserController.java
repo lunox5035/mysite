@@ -58,7 +58,8 @@ public class UserController {
 
 	@Auth
 	@RequestMapping(value="/update", method=RequestMethod.GET)
-	public String update(Model model, @AuthUser UserVo authUser) {
+	public String update(Model model, 
+			@AuthUser UserVo authUser) {
 		UserVo userVo = userService.findUser(authUser.getNo());
 		model.addAttribute("userVo", userVo);
 		return "user/update";

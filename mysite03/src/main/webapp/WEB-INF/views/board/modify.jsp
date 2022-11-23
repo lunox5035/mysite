@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%pageContext.setAttribute("newline", "\n");%>
 
 <!DOCTYPE html>
 <html>
@@ -22,21 +23,17 @@
 						</tr>
 						<tr>
 							<td class="label">제목</td>
-							<td><input type="text" name="title" value=""></td>
+							<td><input type="text" name="title" value="${vo.title }"></td>
 						</tr>
 						<tr>
 							<td class="label">내용</td>
 							<td>
-								<textarea id="content" name="content">수정해야 할 글은 고대로 
-이렇게 textarea에 뿌려야 합니다.
-개행문자 변경도 하지마세요.
-하하하하하
-즐건 코딩 되세요~~~~</textarea>
+								<textarea id="content" name="content" >${fn:replace(vo.contents,newline,"<br/>") }</textarea>
 							</td>
 						</tr>
 					</table>
 					<div class="bottom">
-						<a href="">취소</a>
+						<a href="${pageContext.request.contextPath }/board/view/${vo.no }">취소</a>
 						<input type="submit" value="수정">
 					</div>
 				</form>				
