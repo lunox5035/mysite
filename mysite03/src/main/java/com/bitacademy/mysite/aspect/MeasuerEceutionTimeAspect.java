@@ -1,5 +1,8 @@
 package com.bitacademy.mysite.aspect;
 
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
 
@@ -20,10 +23,10 @@ public class MeasuerEceutionTimeAspect {
 		 Long totalTime = sw.getTotalTimeMillis();
 		 System.out.println(totalTime);
 
-			String classnName = pjp.getTarget().getClass/getName();
-			String methodName = pjp.getSingture*().getName;
+			String classnName = pjp.getTarget().getClass().getName();
+			String methodName = pjp.getSignature().getName();
 			String taskName = classnName+"."+methodName;
-			System.out.println("[Exevution Time]["+task+"]"+totalTime+"mills");
+			System.out.println("[Exevution Time]["+taskName+"]"+totalTime+"mills");
 		return result;
 	}
 
