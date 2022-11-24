@@ -62,7 +62,8 @@ public class BoardService {
 //-----------------------------------------------------------------------------
 	
 	public void addContents(BoardVo vo) {
-		boardRepository.insert(vo);
+		
+		boardRepository.newWrite(vo);
 	}
 
 

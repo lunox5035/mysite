@@ -69,9 +69,10 @@ public class BoardController {
 	
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	private String write(BoardVo vo) {
+		
+		boardService.addContents(vo);
 		return "redirect:/";
 	}
-//	@RequestMapping("/add")
-//	public String add(BoardVo vo) {
-//	}
+	
+	
 }

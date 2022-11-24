@@ -60,5 +60,9 @@ public class BoardRepository {
 		
 		return sqlsession.update("board.hit",no);
 	}
+	public boolean newWrite(BoardVo vo) {
+		int count = sqlsession.insert("board.newWrite",vo);
+		return count == 1;
+	}
 }
 
