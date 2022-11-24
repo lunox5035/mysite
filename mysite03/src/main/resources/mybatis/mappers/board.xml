@@ -6,7 +6,7 @@
 	<![CDATA[
 	insert 
 	into borad 
-	values (null,#{title },#{contents },0,now(),max(group_no),0,0)
+	values (null,#{title },#{contents },0,now(),max(group_no),0,#{userNo)
 	]]>
 	</insert>
 	
@@ -73,5 +73,16 @@
 	where no=#{no }
 	</update>
 
+	<update id="depth" parameterType="long">
+	update board
+	set depth= depth+1
+	where no=#{no }
+	</update>
+
+	<update id="orderNo" parameterType="long">
+	update board
+	set order_no= max(order_no)+1
+	where group_no=#{group_no }
+	</update>
 
 </mapper>
