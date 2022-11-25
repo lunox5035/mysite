@@ -3,6 +3,7 @@ package com.bitacademy.mysite.config.web;
 import java.util.List;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -11,8 +12,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import com.bitacademy.mysite.security.AuthInterceptor;
 import com.bitacademy.mysite.security.AuthUserHandlerMethodArgumentResolver;
 import com.bitacademy.mysite.security.LoginInterceptor;
-import com.bitacademy.mysite.security.LogoutInterceptor;
+import com.bitacademy.mysite.security.LogoutIntercoptor;
 
+@Configuration
 public class SecurityConfig implements WebMvcConfigurer {
 	// Argument Resolvers
 	@Bean
@@ -33,7 +35,7 @@ public class SecurityConfig implements WebMvcConfigurer {
 
 	@Bean
 	public HandlerInterceptor logoutInterceptor() {
-		return new LogoutInterceptor(); 
+		return new LogoutIntercoptor(); 
 	}
 
 	@Bean

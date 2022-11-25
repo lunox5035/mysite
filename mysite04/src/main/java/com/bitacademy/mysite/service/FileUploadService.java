@@ -15,8 +15,7 @@ import com.bitacademy.mysite.exception.FileUploadServiceException;
 
 @Service
 public class FileUploadService {
-	private static String RESTORE_PATH = "/mysite-uploads";
-	private static String URL_BASE = "/gallery/images";
+
 	
 	@Autowired
 	private Environment env;
@@ -29,7 +28,7 @@ public class FileUploadService {
 				return url;
 			}
 			
-			File restoreDirectory = new File(RESTORE_PATH);
+			File restoreDirectory = new File(env.getProperty("fileupload.resourceMapping"));
 			if(!restoreDirectory.exists()) {
 				restoreDirectory.mkdirs();
 			}
@@ -44,11 +43,11 @@ public class FileUploadService {
 			System.out.println("################" + fileSize);
 			byte[] data = multipartFile.getBytes();
 			
-			OutputStream os = new FileOutputStream(RESTORE_PATH + "/" + restoreFilename);
+			OutputStream os = new FileOutputStream(env.getProperty("fileupload.resourceMapping") + "/" + restoreFilename);
 			os.write(data);
 			os.close();
 			
-			url = URL_BASE + "/" + restoreFilename;
+			url =env.getProperty("fileupload.resourceMapping") + "/" + restoreFilename;
 		} catch (IOException e) {
 			throw new FileUploadServiceException(e.toString());
 		}
