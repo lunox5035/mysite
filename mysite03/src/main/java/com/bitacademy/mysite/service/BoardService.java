@@ -67,9 +67,12 @@ public class BoardService {
 //-----------------------------------------------------------------------------
 	
 	public boolean addContents(BoardVo vo) {
+		System.out.println("1.BoardService"+vo);
 		if(vo.getGroupNo() !=null) {	//★
 			OrderNOPuls(vo);
+			System.out.println("2.BoardService"+vo);
 		}
+		System.out.println("3.BoardService"+vo);
 		return boardRepository.insert(vo)==1; 	
 	}
 

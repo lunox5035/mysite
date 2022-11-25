@@ -20,29 +20,29 @@ import com.bitacademy.mysite.vo.UserVo;
 public class BoardController {
 	
 	@Autowired
-	private BoardService boardService;
+	public BoardService boardService;
 
 	@RequestMapping("")
-//	private String list(
+//	public String list(
 //			@RequestParam(value = "currentPage", required = true, defaultValue = "1")Integer currentPage, 
 //			Model model) {
 //		
 //		model.addAttribute("list",boardService.findContentsList(currentPage));
-	private String list(Model model) {
+	public String list(Model model) {
 		List<BoardVo> list = boardService.findContentsList();
 		model.addAttribute("list", list);
 		return "board/list";
 	}
 	
 	@RequestMapping("/view/{no}")//○
-	private String view(@PathVariable("no") Long no ,Model model) {
+	public String view(@PathVariable("no") Long no ,Model model) {
 		System.out.println(no);
 		model.addAttribute("vo",boardService.findContents(no));
 
 		return "board/view";
 	}
 	@RequestMapping(value = "/modify/{no}", method = RequestMethod.GET)//
-	private String modify(@AuthUser UserVo authUser,@PathVariable("no") Long no ,Model model) {		
+	public String modify(@AuthUser UserVo authUser,@PathVariable("no") Long no ,Model model) {		
 	model.addAttribute("vo",boardService.findContents(no,authUser.getNo()));
 		
 		return "board/modify";
@@ -51,7 +51,7 @@ public class BoardController {
 
 	@Auth
 	@RequestMapping(value = "/delete/{no}",method = RequestMethod.POST)
-	private String delete(
+	public String delete(
 			@PathVariable("no") Long no, 
 			Long userNo, 
 			Model model){
@@ -63,14 +63,16 @@ public class BoardController {
 //--------------------------------------------------------------------------
 	@Auth
 	@RequestMapping(value = "/write", method = RequestMethod.GET)//○
-	private String write(Long no,Model model) {
+	public String write(Long no,Model model) {
 		model.addAttribute("userNo",no );
+		System.out.println("1."+no);
 		return "board/write"; 
 	}
 	
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
-	private String write() {
-
+	public String write() {
+		System.out.println("2.");
+		
 		return "redirect:/";
 	}
 	

@@ -59,7 +59,9 @@ public class BoardRepository {
 	
 //		return sqlsession.insert("board.insert",boardVo)==1;
 	public int insert(BoardVo vo) {
+		System.out.println("1.BoardRepository"+vo);
 		return sqlsession.insert("board.insert",vo);
+		
 	}
 	
 	public int OrderNOPuls(Integer groupNo,Integer oerderNo) {
