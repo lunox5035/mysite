@@ -15,51 +15,54 @@ import com.bitacademy.mysite.vo.BoardVo;
 public class BoardRepository {
 
 	@Autowired
-	private SqlSession sqlsession;
+	private SqlSession sqlSession;
 
 	public int delete(Long no, Long userNo) {
 		Map<String, Long> map = new HashMap<String, Long>();
 		map.put("no",no);
 		map.put("userNo",userNo);
 		
-		return sqlsession.delete("board.update",map);
+		return sqlSession.delete("board.update",map);
 	}
 
 	public boolean update(BoardVo vo) {
-		int count = sqlsession.update("board.update",vo);
+		int count = sqlSession.update("board.update",vo);
 		return count==1;
 	}
 //-----------------------------------------------------------------------------
 	public BoardVo view(Long no) {
-		BoardVo vo=sqlsession.selectOne("board.view", no);	
+		BoardVo vo=sqlSession.selectOne("board.view", no);	
 		
 		return vo;
 	}
 
 	public BoardVo findByNoAndUserNo(Long no, Long userNo) {
 		
-		return sqlsession.selectOne("board.findByNo", no);
+		return sqlSession.selectOne("board.findByNo", no);
 	}
 
 	public BoardVo findByNo(Long no) {
 		
-		return sqlsession.selectOne("board.findByNo", no);
+		return sqlSession.selectOne("board.findByNo", no);
 	}
 
 	public List<BoardVo> findAll() {
-		List<BoardVo> list=sqlsession.selectList("board.findAll");
+		List<BoardVo> list=sqlSession.selectList("board.findAll");
 		return list;
 	}
 	
 	public int hitPuls(Long no) {
 		
-		return sqlsession.update("board.hit",no);
+		return sqlSession.update("board.hit",no);
 	}
-//	public boolean newWrite(BoardVo boardVo) {
 	
+//	public boolean newWrite(BoardVo boardVo) {
+//	
 //		return sqlsession.insert("board.insert",boardVo)==1;
+//	}
+	
 	public int insert(BoardVo vo) {
-		return sqlsession.insert("board.insert",vo);
+		return sqlSession.insert("board.insert",vo);
 	}
 	
 	public int OrderNOPuls(Integer groupNo,Integer oerderNo) {
@@ -67,8 +70,20 @@ public class BoardRepository {
 		map.put("orderNo", oerderNo);
 		map.put("groupNo",groupNo);
 
-		return sqlsession.update("board.orderNo",map);
+		return sqlSession.update("board.orderNo",map);
 	}
 	
+	
+	public int getTotalCount(String keyword) {
+		return sqlSession.selectOne("board.totalCount", keyword);
+	}
+	public List<BoardVo> findAllByPageAndKeword(String keyword, Integer page, Integer size) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("keyword", keyword);
+		map.put("startIndex", (page - 1) * size);
+		map.put("size", size);
+
+		return sqlSession.selectList("board.findAllByPageAndKeword", map);
+	}
 }
 
