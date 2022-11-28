@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+
+	<insert id="new" parameterType="boardvo">
+	<![CDATA[
+	insert 
+	into borad 
+	values (null,#{title },#{contents },0,now(),(
+	select ifnull(max(group_no),0)+1 from board a
+	),1,0,#{userNo })
+	]]>
+	</insert>
+	
+	<insert id="insert" parameterType="boardvo">
+		<choose>
+			<when test="groupNo == null">
+				<![CDATA[
+				insert
+				  into board
+				values ( null,
+						 #{title },
+						 #{contents },
+						 0,
+						 now(),
+						 ( select ifnull( max( group_no ), 0 ) + 1
+						     from board a ),
+						 1, 
+						 0, 
+						 #{userNo } )
+				]]>
+			</when>
+			<otherwise>
+				<![CDATA[
+				insert
+				  into board
+				values ( null,
+						 #{title },
+						 #{contents },
+						 0,
+						 now(),
+						 #{groupNo },
+						 #{orderNo }, 
+						 #{depth }, 
+						 #{userNo } )				
+				]]>
+			</otherwise>
+		</choose>
+	</insert>
+	
+	<insert id="reply" parameterType="boardvo">
+	<![CDATA[
+	insert 
+	into borad 
+	values (null,#{title },#{contents },0,now(),#{groupNo },max(orderNo)+1,#{depth }+1)
+	]]>
+	</insert>
+	
+	
+	<delete id="delete" parameterType="Long">
+	<![CDATA[
+	delete from borad where no = #{no }
+	]]>
+	</delete>
+
+	<update id="update" parameterType="long">
+		update borad
+		set title=#{title },contents=#{contents }
+		where no=#{no }
+	</update>
+
+	<select id="view" resultType="boardvo">
+		select title,contents,user_no as userNo
+		from board
+		where no=#{no}
+	</select>
+
+	<select id="findByNo" resultType="boardvo">
+		select no, title, contents, user_no as userNo
+		from board
+		where no=#{no}
+	</select>
+	
+	<select id="findByNoAndUserNo" resultType="boardvo">
+		select title, contents, user_no as userNo
+		from board
+		where no=#{no} and userNo=#{userNo}
+	</select>
+
+
+	<select id="findAll" resultType="boardvo">
+		select
+			a.no as no,
+			a.title as title,
+			a.contents as contents,
+			a.hit as hit,
+			date_format(a.reg_date, '%Y/%m/%d %H:%i:%s' ) as regDate,
+			a.group_no as groupNo,
+			a.order_no as orderNo,
+			a.depth as depth,
+			a.user_no as userNo,
+			b.name as name
+		from board a, user b
+		where a.user_no = b.no
+		order by group_no desc, order_no asc
+	</select>
+
+	<update id="hit" parameterType="long">
+	update board
+	set hit= hit+1
+	where no=#{no }
+	</update>
+
+	<update id="depth" parameterType="long">
+	update board
+	set depth= depth+1
+	where no=#{no }
+	</update>
+
+	<update id="orderNo" parameterType="long">
+	update board
+	set order_no= max(order_no)+1
+	where group_no=#{group_no }
+	</update>
+
+</mapper>
