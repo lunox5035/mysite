@@ -1,4 +1,4 @@
-package com.bitacademy.mysite.config2.web2;
+package com.bitacademy.mysite.config;
 
 import java.util.List;
 
