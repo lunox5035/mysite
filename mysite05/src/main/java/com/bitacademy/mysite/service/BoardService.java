@@ -18,6 +18,7 @@ public class BoardService {
 	@Autowired
 	private BoardRepository boardRepository;
 
+	//페이징&목록출력(copy)
 	public Map<String, Object> getContentsList(int currentPage, String keyword) {
 
 		// 1. 페이징을 위한 기본 데이터 계산
@@ -60,5 +61,15 @@ public class BoardService {
 		map.put("keyword", keyword);
 
 		return map;
+	}
+	
+	public boolean addContents(BoardVo vo) {
+		if(vo.getContents()!=null) {
+			orderNoPuls(vo);
+		}
+		return boardRepository.insert(vo)==1;
+	}
+	public boolean orderNoPuls(BoardVo vo) {
+		return boardRepository.
 	}
 }

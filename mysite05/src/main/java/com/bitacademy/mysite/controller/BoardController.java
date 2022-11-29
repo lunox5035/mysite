@@ -22,6 +22,7 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 
+	//페이징&목록출력(copy)
 	@RequestMapping("")
 	public String list(@RequestParam(value="p", required=true, defaultValue="1") Integer page, @RequestParam(value = "kwd", required = true, defaultValue = "") String keyword, Model model) {
 		Map<String, Object> map = boardService.getContentsList(page, keyword);
@@ -30,4 +31,5 @@ public class BoardController {
 		
 		return "board/list";
 	}
+	
 }
