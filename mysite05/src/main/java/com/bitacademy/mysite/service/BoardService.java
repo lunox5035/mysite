@@ -18,38 +18,6 @@ public class BoardService {
 	@Autowired
 	private BoardRepository boardRepository;
 
-	public boolean addContents(BoardVo boardVo) {
-		if (boardVo.getGroupNo() != null) {
-			increaseGroupOrderNo(boardVo);
-		}
-		return boardRepository.insert(boardVo) == 1;
-	}
-
-	public BoardVo getContents(Long no) {
-		BoardVo boardVo = boardRepository.findByNo(no);
-
-		if (boardVo != null) {
-			boardRepository.updateHit(no);
-		}
-
-		return boardVo;
-	}
-
-	public BoardVo getContents(Long no, Long userNo) {
-		BoardVo boardVo = boardRepository.findByNoAndUserNo(no, userNo);
-		return boardVo;
-	}
-
-	public boolean modifyContents(BoardVo boardVo) {
-		int count = boardRepository.update(boardVo);
-		return count == 1;
-	}
-
-	public boolean deleteContents(Long boardNo, Long userNo) {
-		int count = boardRepository.delete(boardNo, userNo);
-		return count == 1;
-	}
-
 	public Map<String, Object> getContentsList(int currentPage, String keyword) {
 
 		// 1. 페이징을 위한 기본 데이터 계산
@@ -92,9 +60,5 @@ public class BoardService {
 		map.put("keyword", keyword);
 
 		return map;
-	}
-
-	public boolean increaseGroupOrderNo(BoardVo boardVo) {
-		return boardRepository.updateOrderNo(boardVo.getGroupNo(), boardVo.getOrderNo()) > 0;
 	}
 }
