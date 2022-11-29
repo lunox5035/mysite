@@ -23,12 +23,14 @@ public class BoardController {
 	private BoardService boardService;
 
 	@RequestMapping("")
-	public String index(@RequestParam(value="p", required=true, defaultValue="1") Integer page, @RequestParam(value = "kwd", required = true, defaultValue = "") String keyword, Model model) {
+	public String list(
+			@RequestParam(value="p", required=true, defaultValue="1") Integer page, 
+			@RequestParam(value = "kwd", required = true, defaultValue = "") String keyword, 
+			Model model) {
 		Map<String, Object> map = boardService.getContentsList(page, keyword);
 		model.addAttribute("map", map);
-		// model.addAllAttributes(map);
 		
-		return "board/index";
+		return "board/list";
 	}
 
 	@RequestMapping("/view/{no}")

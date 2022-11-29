@@ -19,8 +19,9 @@ import com.bitacademy.mysite.security.LoginInterceptor;
 import com.bitacademy.mysite.security.LogoutIntercoptor;
 
 @SpringBootConfiguration
-@PropertySource("classpath:com/bitacademy/mysite/config/web/fileupload.properties")
+@PropertySource("classpath:/web/fileupload.properties")
 public class WebConfig implements WebMvcConfigurer {
+	
 	@Autowired
 	private Environment env;
 	

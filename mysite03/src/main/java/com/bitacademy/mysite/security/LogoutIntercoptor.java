@@ -9,8 +9,12 @@ import org.springframework.web.servlet.HandlerInterceptor;
 public class LogoutIntercoptor implements HandlerInterceptor {
 
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+	public boolean preHandle(
+			HttpServletRequest request, 
+			HttpServletResponse response, 
+			Object handler) 
 			throws Exception {
+		
 		HttpSession session = request.getSession();
 		session.removeAttribute("authUser");
 		session.invalidate();
@@ -19,5 +23,4 @@ public class LogoutIntercoptor implements HandlerInterceptor {
 		
 		return false;
 	}
-
 }

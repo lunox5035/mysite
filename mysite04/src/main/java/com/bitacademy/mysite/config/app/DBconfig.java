@@ -16,7 +16,7 @@ public class DBconfig {
 	@Autowired
 	private Environment env;
 	@Bean
-	public DataSource basicdataSource() {
+	public DataSource dataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setDriverClassName(env.getProperty("jdbc.diverClassName"));
 		dataSource.setUrl(env.getProperty("jdbc.url"));

@@ -123,4 +123,21 @@
 	where group_no=#{group_no }
 	</update>
 
+
+	<select id="totalCount" parameterType="string" resultType="integer">
+		<choose>
+			<when test="_parameter == null or _parameter == ''">
+				<![CDATA[
+				select count(*) from board
+				]]>				
+			</when>
+			<otherwise>
+				<![CDATA[
+				select count(*) 
+				  from board
+				 where (title like '%${_parameter }%' or contents like '%${_parameter  }%') 
+				]]>				
+			</otherwise>
+		</choose>	
+	</select>
 </mapper>

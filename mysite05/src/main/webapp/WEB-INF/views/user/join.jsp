@@ -27,36 +27,36 @@
 					 action="${pageContext.request.contextPath}/user/join">
 					
 					<label class="block-label" for="name">
-						<spring:message code="Join.form.label.name"/>
+						<spring:message code="Join.form.label.name" text="이름"/>
 					</label>
 					<form:input path="name" />
 					<p style="text-align: left; padding: 2px 0 2px 0; color:red">
-					<spring:hasBindErrors name="userVo">
-						<c:if test="${errors.hasFieldErrors('name') }">
-				        	<spring:message 
-				        	code="${errors.getFieldError( 'name' ).codes[0] }"
-	        				text="${errors.getFieldError('name').defaultMessage }" />
-				 		</c:if>	
-					</spring:hasBindErrors>
+						<spring:hasBindErrors name="userVo">
+							<c:if test="${errors.hasFieldErrors('name') }">
+					        	<spring:message 
+					        	code="${errors.getFieldError( 'name' ).codes[0] }"
+		        				text="${errors.getFieldError('name').defaultMessage }" />
+					 		</c:if>	
+						</spring:hasBindErrors>
 					</p>
 <!-- ---------------------------------------------------------------------------------------------------- -->
 					<label class="block-label" for="email">이메일</label>
 					<form:input path="email"/>
 					<input type="button" value="id 중복체크">
 					<P style="text-align: left; padding: 2px 0 2px 0; color:red">
-					<spring:hasBindErrors name="userVo">
-						<c:if test="${errors.hasFieldErrors('email') }">
-				        	<spring:message code="${errors.getFieldError( 'email' ).codes[0] }"/>
-				 		</c:if>	
-					</spring:hasBindErrors>
+						<spring:hasBindErrors name="userVo">
+							<c:if test="${errors.hasFieldErrors('email') }">
+					        	<spring:message code="${errors.getFieldError( 'email' ).codes[0] }"/>
+					 		</c:if>	
+						</spring:hasBindErrors>
 					</p>
 <!-- ---------------------------------------------------------------------------------------------------- -->					
 					<label class="block-label">패스워드</label>
 					<form:password path="password"/>
 					<P style="text-align: left; padding: 2px 0 2px 0; color:red">
-					<spring:hasBindErrors name="userVo">
-						<spring:message code="${errors.getFieldError( 'password' ).codes[0] }"/>
-				 	</spring:hasBindErrors>
+						<spring:hasBindErrors name="userVo">
+							<spring:message code="${errors.getFieldError( 'password' ).codes[0] }"/>
+					 	</spring:hasBindErrors>
 					</p>
 <!-- ---------------------------------------------------------------------------------------------------- -->					
 					<fieldset>
