@@ -29,11 +29,17 @@ public class BoardRepository {
 		return sqlSession.selectOne("board.totalCount", keyword);
 	}
 	
+	//글쓰기
 	public int insert(BoardVo vo) {
 		return sqlSession.insert("board.insert",vo);
 	}
 	
 	public int orderNoPuls(Integer groupNo, Integer orderNo) {
-		Map
+		Map<String,Integer> map = new HashMap<>();
+		map.put("orderNo", orderNo);
+		map.put("groupNo", groupNo);
+		
+		return sqlSession.update("board.updateOrederNo",map);
 	}
+	
 }

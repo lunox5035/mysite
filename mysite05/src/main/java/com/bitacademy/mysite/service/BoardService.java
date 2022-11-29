@@ -63,13 +63,15 @@ public class BoardService {
 		return map;
 	}
 	
+	//글쓰기
 	public boolean addContents(BoardVo vo) {
 		if(vo.getContents()!=null) {
 			orderNoPuls(vo);
 		}
 		return boardRepository.insert(vo)==1;
 	}
+	//copy
 	public boolean orderNoPuls(BoardVo vo) {
-		return boardRepository.
+		return boardRepository.orderNoPuls(vo.getGroupNo(), vo.getOrderNo())>0;
 	}
 }

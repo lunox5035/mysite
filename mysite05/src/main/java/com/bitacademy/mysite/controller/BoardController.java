@@ -24,7 +24,11 @@ public class BoardController {
 
 	//페이징&목록출력(copy)
 	@RequestMapping("")
-	public String list(@RequestParam(value="p", required=true, defaultValue="1") Integer page, @RequestParam(value = "kwd", required = true, defaultValue = "") String keyword, Model model) {
+	public String list(
+			@RequestParam(value="p", 
+			required=true, defaultValue="1") Integer page, 
+			@RequestParam(value = "kwd", required = true, 
+			defaultValue = "") String keyword, Model model) {
 		Map<String, Object> map = boardService.getContentsList(page, keyword);
 		model.addAttribute("map", map);
 		// model.addAllAttributes(map);
@@ -32,4 +36,17 @@ public class BoardController {
 		return "board/list";
 	}
 	
-}
+//	//글쓰기
+//	@RequestMapping(value = "/write",method = RequestMethod.GET)
+//	public String write() {
+//		return "board/write"; 
+//	}
+//	@RequestMapping(value = "/write", method = RequestMethod.POST)
+//	public String write(
+//			@AuthUser UserVo authUser,
+//			BoardVo vo,
+//			@RequestParam(value = )) {
+//		vo
+//		//copy
+//		return "redirect:/board?p=" + page + "&kwd=" + WebUtil.encodeURL(keyword, "UTF-8");
+	}
