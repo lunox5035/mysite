@@ -11,17 +11,12 @@ import com.bitacademy.mysite.service.UserService;
 import com.bitacademy.mysite.vo.UserVo;
 
 public class LoginInterceptor implements HandlerInterceptor {
-
 	@Autowired
 	private UserService userService;
 	
 	@Override
-	public boolean preHandle(
-			HttpServletRequest request, 
-			HttpServletResponse response, 
-			Object handler)
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		//
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 
@@ -32,6 +27,8 @@ public class LoginInterceptor implements HandlerInterceptor {
 			request.getRequestDispatcher("/WEB-INF/views/user/login.jsp").forward(request, response);
 			return false;
 		}
+		
+		System.out.println(authUser);
 		
 		HttpSession session = request.getSession(true);
 		session.setAttribute("authUser", authUser);
