@@ -19,9 +19,9 @@ public class AuthUserHandlerMethodArgumentResolver implements HandlerMethodArgum
 			NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
 		if(!supportsParameter(parameter)) {
 			return WebArgumentResolver.UNRESOLVED;
-		}
+		}		
 		HttpServletRequest request = (HttpServletRequest)webRequest.getNativeRequest();
-		HttpSession session =request.getSession();
+		HttpSession session = request.getSession();
 		if(session == null) {
 			return null;
 		}

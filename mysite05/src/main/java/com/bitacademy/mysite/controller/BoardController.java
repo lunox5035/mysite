@@ -49,4 +49,5 @@ public class BoardController {
 //		vo
 //		//copy
 //		return "redirect:/board?p=" + page + "&kwd=" + WebUtil.encodeURL(keyword, "UTF-8");
-	}
+//	}
+}
