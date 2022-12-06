@@ -135,9 +135,9 @@
 			<artifactId>jsp-api</artifactId>
 			<version>2.2</version>
 			<scope>provided</scope>
-		</dependency>
+		</dependency>			
 	</dependencies>
-	
+		
 	<build>
 		<finalName>mysite04</finalName>
 		<plugins>
@@ -151,10 +151,10 @@
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>2.2</version>
 				<configuration>
-					<url>${tomcat.deploy.url }</url>
+					<url>${tomcat.deploy.url}</url>
 					<server>tomcat-bitacademy</server>
-					</configuration>
-			</plugin>
+				</configuration>
+			</plugin>			
 		</plugins>
 	</build>	
 </project>
