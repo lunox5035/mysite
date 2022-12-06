@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" 
+pageEncoding="UTF-8"%>
 		<div id="navigation">
 			<ul>
 				<li><a href="${pageContext.request.contextPath}">여관규</a></li>
