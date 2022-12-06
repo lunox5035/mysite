@@ -1,6 +1,5 @@
 package com.bitacademy.mysite.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.bitacademy.mysite.security.Auth;
 import com.bitacademy.mysite.security.AuthUser;
 import com.bitacademy.mysite.service.BoardService;
-import com.bitacademy.mysite.vo.BoardVo;
 import com.bitacademy.mysite.vo.UserVo;
 
 @Controller
