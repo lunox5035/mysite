@@ -1,11 +1,9 @@
 package com.bitacademy.mysite.vo;
 
 public class GalleryVo {
-
 	private Long no;
 	private String url;
 	private String comments;
-	
 	@Override
 	public String toString() {
 		return "GalleryVo [no=" + no + ", url=" + url + ", comments=" + comments + "]";
