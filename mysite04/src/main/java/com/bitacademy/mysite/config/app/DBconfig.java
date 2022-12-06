@@ -18,11 +18,11 @@ public class DBconfig {
 	@Bean
 	public DataSource dataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
-		dataSource.setDriverClassName(env.getProperty("jdbc.diverClassName"));
+		dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
 		dataSource.setUrl(env.getProperty("jdbc.url"));
 		dataSource.setUsername(env.getProperty("jdbc.username"));
 		dataSource.setPassword(env.getProperty("jdbc.password"));
-		dataSource.setInitialSize(env.getProperty("jdbc.initalSize", Integer.class));
+		dataSource.setInitialSize(env.getProperty("jdbc.initialSize", Integer.class));
 		dataSource.setMaxActive(env.getProperty("jdbc.maxActive", Integer.class));
 		
 		return dataSource;
