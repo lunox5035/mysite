@@ -7,6 +7,7 @@ pageEncoding="UTF-8"%>
 <div id="header">
 	<h1>MySite</h1>
 	<ul>
+
 		<c:choose>
 			<c:when test="${empty authUser }">
 				<li><a href="${pageContext.request.contextPath}/user/login">로그인</a><li>
@@ -18,5 +19,6 @@ pageEncoding="UTF-8"%>
 				<li>${authUser.name }님 안녕하세요 ^^;</li>
 			</c:otherwise>
 		</c:choose>
+
 	</ul>
 </div>
